@@ -13,7 +13,7 @@
 @class SpinnerClient;
 @class SpinnerClientConfig;
 @class SpinnerDirEntry;
-@class SpinnerUser;
+@class SpinnerKeys;
 
 @interface SpinnerClient : NSObject <goSeqRefInterface> {
 }
@@ -63,7 +63,7 @@
 - (void)setNext:(SpinnerDirEntry*)v;
 @end
 
-@interface SpinnerUser : NSObject <goSeqRefInterface> {
+@interface SpinnerKeys : NSObject <goSeqRefInterface> {
 }
 @property(strong, readonly) id _ref;
 
@@ -72,11 +72,9 @@
 - (void)setPublic:(NSString*)v;
 - (NSString*)private;
 - (void)setPrivate:(NSString*)v;
-- (NSString*)error;
-- (void)setError:(NSString*)v;
 @end
 
-FOUNDATION_EXPORT SpinnerUser* SpinnerKeygen(NSString* secretStr, NSError** error);
+FOUNDATION_EXPORT SpinnerKeys* SpinnerKeygen(NSString* secretStr, NSError** error);
 
 FOUNDATION_EXPORT SpinnerClient* SpinnerNewClient(SpinnerClientConfig* clientConfig, NSError** error);
 

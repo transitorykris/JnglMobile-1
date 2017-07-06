@@ -10,6 +10,10 @@ The code is published here for auditing.
 * Provide read and write access to files and directories in Upspin
 * Mediate between non-Upspin enabled apps and Upspin
 
+## Notes
+
+* Running in the simulator you may need to set `settings set plugin.os.goroutines.enable false` in `~/.lldbinit` if you experience LLDB crashes see [https://github.com/golang/go/issues/19846](https://github.com/golang/go/issues/19846)
+
 ## License
 
 ```

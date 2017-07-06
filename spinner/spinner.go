@@ -14,11 +14,10 @@ import (
 	"upspin.io/user"
 )
 
-// User is returned after the keys are regenerated
-type User struct {
+// Keys is returned after the keys are regenerated
+type Keys struct {
 	Public  string
 	Private string
-	Error   string
 }
 
 // Below is from:
@@ -28,9 +27,9 @@ func validSecretSeed(seed string) bool {
 }
 
 // Keygen will generate our key for the first time
-func Keygen(secretStr string) (*User, error) {
+func Keygen(secretStr string) (*Keys, error) {
 	// Because obj-c and golang and.. oh man..
-	var user User
+	var keys Keys
 
 	// Our secret
 	b := make([]byte, 16)
@@ -50,10 +49,10 @@ func Keygen(secretStr string) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	user.Public = string(public)
-	user.Private = private
+	keys.Public = string(public)
+	keys.Private = private
 
-	return &user, nil
+	return &keys, nil
 }
 
 // Below is from:
