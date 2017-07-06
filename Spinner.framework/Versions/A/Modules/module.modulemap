@@ -1,0 +1,8 @@
+framework module "Spinner" {
+	header "ref.h"
+    header "Spinner.objc.h"
+    header "Universe.objc.h"
+    header "Spinner.h"
+
+    export *
+}

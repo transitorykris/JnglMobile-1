@@ -12,6 +12,7 @@
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
 		01EDDA3B1F0DD16800DAD2AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA3A1F0DD16800DAD2AB /* Assets.xcassets */; };
 		01EDDA3E1F0DD16800DAD2AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA3C1F0DD16800DAD2AB /* LaunchScreen.storyboard */; };
+		01EDDA711F0ECA6A00DAD2AB /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		01EDDA3F1F0DD16800DAD2AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01EDDA631F0EB98500DAD2AB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01EDDA641F0EBA0400DAD2AB /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		01EDDA701F0EC97B00DAD2AB /* Spinner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spinner.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EDDA711F0ECA6A00DAD2AB /* Spinner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 				01EDDA631F0EB98500DAD2AB /* README.md */,
 				01EDDA321F0DD16800DAD2AB /* JnglMobile */,
 				01EDDA311F0DD16800DAD2AB /* Products */,
+				01EDDA6F1F0EC97B00DAD2AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +70,14 @@
 				01EDDA3F1F0DD16800DAD2AB /* Info.plist */,
 			);
 			path = JnglMobile;
+			sourceTree = "<group>";
+		};
+		01EDDA6F1F0EC97B00DAD2AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01EDDA701F0EC97B00DAD2AB /* Spinner.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +289,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = JnglMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile;
@@ -294,6 +310,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = JnglMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile;
