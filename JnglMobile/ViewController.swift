@@ -3,7 +3,7 @@
 //  JnglMobile
 //
 //  Created by Kris Foster on 7/5/17.
-//  Copyright © 2017 aheadbyacentury. All rights reserved.
+//  Copyright © 2017 Ahead by a Century, LLC. All rights reserved.
 //
 
 import UIKit
