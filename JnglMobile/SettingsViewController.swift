@@ -9,7 +9,7 @@
 import UIKit
 import Spinner
 
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var usernameTextField: UITextField!

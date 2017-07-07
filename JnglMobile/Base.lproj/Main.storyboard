@@ -54,15 +54,15 @@
             </objects>
             <point key="canvasLocation" x="-399.19999999999999" y="195.6521739130435"/>
         </scene>
-        <!--Configuration-->
+        <!--Settings-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SettingsViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="Setttungs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -175,7 +175,7 @@
                             <constraint firstItem="6OJ-Uc-PZP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="zxR-cz-x4q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Configuration" id="wKI-G4-a8G"/>
+                    <navigationItem key="navigationItem" title="Settings" id="wKI-G4-a8G"/>
                     <connections>
                         <outlet property="dirServerTextField" destination="K3d-Bb-83d" id="5go-xD-uth"/>
                         <outlet property="keyServerTextField" destination="gKm-WA-np4" id="wdg-dx-LNt"/>
