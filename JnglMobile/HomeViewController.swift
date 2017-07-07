@@ -20,6 +20,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         upspin = Upspin()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setDetails()
+    }
+    
+    func setDetails() {
         usernameLabel.text = upspin.config.userName()
     }
     
