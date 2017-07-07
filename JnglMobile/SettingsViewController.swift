@@ -18,26 +18,26 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var storeServerTextField: UITextField!
     @IBOutlet weak var dirServerTextField: UITextField!
     
-    var upspinConfig: SpinnerClientConfig!
+    var upspin: Upspin!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Populate our form if details were given to us
-        if let upspinConfig = upspinConfig {
-            usernameTextField.text = upspinConfig.userName()
-            keyServerTextField.text = upspinConfig.keyNetAddr()
-            storeServerTextField.text = upspinConfig.storeNetAddr()
-            dirServerTextField.text = upspinConfig.dirNetAddr()
+        if let upspin = upspin {
+            usernameTextField.text = upspin.config.userName()
+            keyServerTextField.text = upspin.config.keyNetAddr()
+            storeServerTextField.text = upspin.config.storeNetAddr()
+            dirServerTextField.text = upspin.config.dirNetAddr()
         }
     }
     
     func saveConfig() {
         // Set the easy stuff
-        upspinConfig.setUserName(usernameTextField.text)
-        upspinConfig.setKeyNetAddr(keyServerTextField.text)
-        upspinConfig.setStoreNetAddr(storeServerTextField.text)
-        upspinConfig.setDirNetAddr(dirServerTextField.text)
+        upspin.config.setUserName(usernameTextField.text)
+        upspin.config.setKeyNetAddr(keyServerTextField.text)
+        upspin.config.setStoreNetAddr(storeServerTextField.text)
+        upspin.config.setDirNetAddr(dirServerTextField.text)
         
         // Regenerate the public and private keys from the proquint
         var error: NSError?
@@ -46,10 +46,10 @@ class SettingsViewController: UIViewController {
             print("Error regenerating keys \(String(describing: error))")
             return
         }
-        upspinConfig.setPublicKey(keys?.public())
-        upspinConfig.setPrivateKey(keys?.private())
+        upspin.config.setPublicKey(keys?.public())
+        upspin.config.setPrivateKey(keys?.private())
         
-        print("Created configuration \(upspinConfig) public key \(upspinConfig.publicKey()) private key \(upspinConfig.privateKey())")
+        print("Created configuration \(upspin.config) public key \(upspin.config.publicKey()) private key \(upspin.config.privateKey())")
     }
     
     // Mark: Actions
