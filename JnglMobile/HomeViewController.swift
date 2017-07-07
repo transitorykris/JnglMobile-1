@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var filenameTextField: UITextField!
+    @IBOutlet weak var fileContentsTextView: UITextView!
     
     var upspin: Upspin!
     
@@ -49,6 +51,25 @@ class HomeViewController: UIViewController {
         }
         
         print("Navigating")
+    }
+    
+    // MARK: Actions
+    @IBAction func getFileButton(_ sender: UIButton) {
+        var contents: Data
+        
+        do {
+            try contents = upspin.client.get(filenameTextField.text)
+        } catch let error as NSError {
+            print("Failed to get file \(error)")
+            fileContentsTextView.text = "Failed to get file \(error)"
+            return
+        }
+        
+        if let contentsString = String(data: contents, encoding: .utf8) {
+            fileContentsTextView.text = contentsString
+        } else {
+            fileContentsTextView.text = "Failed to convert data to string"
+        }
     }
     
 }

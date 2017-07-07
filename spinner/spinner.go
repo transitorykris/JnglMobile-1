@@ -12,6 +12,11 @@ import (
 	"upspin.io/pack/ee"
 	"upspin.io/upspin"
 	"upspin.io/user"
+
+	// Load everything we need.
+	_ "upspin.io/pack/ee"
+	_ "upspin.io/pack/plain"
+	_ "upspin.io/transports"
 )
 
 // Keys is returned after the keys are regenerated

@@ -49,7 +49,9 @@ class SettingsViewController: UIViewController {
         upspin.config.setPublicKey(keys?.public())
         upspin.config.setPrivateKey(keys?.private())
         
-        print("Created configuration \(upspin.config) public key \(upspin.config.publicKey()) private key \(upspin.config.privateKey())")
+        upspin.createUpspinClient()
+        
+        print("Created configuration \(upspin.config) public key \(upspin.config.publicKey())")
     }
     
     // Mark: Actions

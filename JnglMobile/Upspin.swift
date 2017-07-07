@@ -26,10 +26,10 @@ class Upspin: NSObject {
     func loadUpspinConfig() {
         // Hardcode our config for now
         config = SpinnerNewClientConfig()
-        config?.setUserName("kris.foster@gmail.com")
-        config?.setKeyNetAddr("key.upspin.io")
-        config?.setStoreNetAddr("store.jngl.io")
-        config?.setDirNetAddr("dir.jngl.io")
+        config?.setUserName("kris@jn.gl")
+        config?.setKeyNetAddr("key.upspin.io:443")
+        config?.setStoreNetAddr("upspin.jn.gl:443")
+        config?.setDirNetAddr("upspin.jn.gl:443")
         
         // Generate a hardcoded fake set of keys
         var error: NSError?
@@ -44,9 +44,12 @@ class Upspin: NSObject {
     
     func createUpspinClient() {
         var error: NSError?
+        print("Using config \(config)")
         client = SpinnerNewClient(config, &error)
         if error != nil {
             fatalError("Could not create client \(String(describing: error))")
         }
+        print("Client created")
     }
+    
 }
