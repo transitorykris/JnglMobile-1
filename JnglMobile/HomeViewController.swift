@@ -12,12 +12,15 @@ import Spinner
 class HomeViewController: UIViewController {
     
     // MARK: Properties
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     var upspin: Upspin!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         upspin = Upspin()
+        usernameLabel.text = upspin.config.userName()
     }
     
     // MARK: - Navigation

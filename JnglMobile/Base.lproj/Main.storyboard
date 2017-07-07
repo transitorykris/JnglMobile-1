@@ -33,10 +33,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-S5-Ceg">
-                                <rect key="frame" x="16" y="318" width="125" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JN-Uc-Bgf">
+                                <rect key="frame" x="16" y="89" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Configuration"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-S5-Ceg">
+                                <rect key="frame" x="16" y="127" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="Settings" id="0Od-ff-84r"/>
                                 </connections>
@@ -46,10 +53,13 @@
                         <viewLayoutGuide key="safeArea" id="JgT-uP-9DE"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="HMR-Gw-RTZ"/>
+                    <connections>
+                        <outlet property="usernameLabel" destination="3JN-Uc-Bgf" id="xOn-AL-fxq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebT-qf-61H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-399.19999999999999" y="195.6521739130435"/>
+            <point key="canvasLocation" x="-399.5" y="195.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="tne-QT-ifu">
