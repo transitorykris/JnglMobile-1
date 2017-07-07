@@ -26,10 +26,10 @@ class Upspin: NSObject {
     func loadUpspinConfig() {
         // Hardcode our config for now
         config = SpinnerNewClientConfig()
-        config?.setUserName("kris@jn.gl")
-        config?.setKeyNetAddr("key.upspin.io:443")
-        config?.setStoreNetAddr("upspin.jn.gl:443")
-        config?.setDirNetAddr("upspin.jn.gl:443")
+        config.setUserName("kris@jn.gl")
+        config.setKeyNetAddr("key.upspin.io:443")
+        config.setStoreNetAddr("upspin.jn.gl:443")
+        config.setDirNetAddr("upspin.jn.gl:443")
         
         // Generate a hardcoded fake set of keys
         var error: NSError?
