@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1260" y="196"/>
         </scene>
-        <!--Jngl-->
+        <!--Home-->
         <scene sceneID="c5F-2z-b9t">
             <objects>
-                <viewController id="Muu-Cc-rdw" sceneMemberID="viewController">
+                <viewController id="Muu-Cc-rdw" customClass="HomeViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xeG-Nw-l0U"/>
                         <viewControllerLayoutGuide type="bottom" id="W50-9f-6IM"/>
@@ -48,7 +48,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Jngl" id="HMR-Gw-RTZ"/>
+                    <navigationItem key="navigationItem" title="Home" id="HMR-Gw-RTZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebT-qf-61H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
