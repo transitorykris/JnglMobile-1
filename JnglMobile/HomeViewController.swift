@@ -21,6 +21,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Style the TextView to make it more obvious
+        fileContentsTextView.layer.cornerRadius = 5
+        fileContentsTextView.layer.borderColor = UIColor.lightGray.cgColor
+        fileContentsTextView.layer.borderWidth = 1
+        
         upspin = Upspin()
     }
     
@@ -91,6 +96,15 @@ class HomeViewController: UIViewController {
             entry = entry?.next()
         }
         fileContentsTextView.text = listing
+    }
+    
+    @IBAction func putButton(_ sender: UIButton) {
+        do {
+            try upspin.client.put(filenameTextField.text, data: fileContentsTextView.text.data(using: String.Encoding.utf8))
+        } catch let error as NSError {
+            print("Failed to put file \(error)")
+            return
+        }
     }
     
 }

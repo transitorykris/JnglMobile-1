@@ -79,11 +79,19 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxh-l0-WlJ">
-                                <rect key="frame" x="73" y="304" width="46" height="30"/>
+                                <rect key="frame" x="70" y="304" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Glob"/>
                                 <connections>
                                     <action selector="globButton:" destination="Muu-Cc-rdw" eventType="touchUpInside" id="GzE-18-BWP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ou-p0-jSa">
+                                <rect key="frame" x="124" y="304" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Put"/>
+                                <connections>
+                                    <action selector="putButton:" destination="Muu-Cc-rdw" eventType="touchUpInside" id="fyd-GA-qBj"/>
                                 </connections>
                             </button>
                         </subviews>
