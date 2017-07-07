@@ -125,13 +125,19 @@ func (c *Client) Glob(pattern string) (*DirEntry, error) {
 			LastModified: int64(de.Time),
 			Writer:       string(de.Writer),
 		}
+		fmt.Println("We are working on", &dirEntry)
 		if last != nil {
 			last.Next = dirEntry
+			fmt.Println("Previous last is now", last)
 		} else {
 			first = dirEntry
+			fmt.Println("First is now", first)
 		}
 		last = dirEntry
+		fmt.Println("Last is now", last)
 	}
+	fmt.Println("Returning first", first)
+	fmt.Println("The next is", first.Next)
 	return first, nil
 }
 

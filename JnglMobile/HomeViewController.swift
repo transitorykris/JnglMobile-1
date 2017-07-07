@@ -72,4 +72,25 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction func globButton(_ sender: UIButton) {
+        var dirEntry: SpinnerDirEntry?
+        
+        do {
+            try dirEntry = upspin.client.glob(filenameTextField.text)
+        } catch let error as NSError {
+            print("Failed to get listing \(error)")
+            fileContentsTextView.text = "Failed to get listing \(error)"
+            return
+        }
+        
+        var listing = ""
+        var entry = dirEntry
+        while entry != nil {
+            print("\(String(describing: entry?.name()))")
+            listing = listing + (entry?.name())! + "\n"
+            entry = entry?.next()
+        }
+        fileContentsTextView.text = listing
+    }
+    
 }
