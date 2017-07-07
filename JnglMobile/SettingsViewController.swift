@@ -19,15 +19,20 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var dirServerTextField: UITextField!
     
     var upspinConfig: SpinnerClientConfig!
-    var upspinClient: SpinnerClient!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Populate our form if details were given to us
+        if let upspinConfig = upspinConfig {
+            usernameTextField.text = upspinConfig.userName()
+            keyServerTextField.text = upspinConfig.keyNetAddr()
+            storeServerTextField.text = upspinConfig.storeNetAddr()
+            dirServerTextField.text = upspinConfig.dirNetAddr()
+        }
     }
     
-    func createConfig() {
-        upspinConfig = SpinnerNewClientConfig()
-        
+    func saveConfig() {
         // Set the easy stuff
         upspinConfig.setUserName(usernameTextField.text)
         upspinConfig.setKeyNetAddr(keyServerTextField.text)
@@ -44,24 +49,13 @@ class SettingsViewController: UIViewController {
         upspinConfig.setPublicKey(keys?.public())
         upspinConfig.setPrivateKey(keys?.private())
         
-        print("Created configuration \(upspinConfig) public key \(upspinConfig.publicKey())")
-    }
-    
-    func createClient() {
-        var error: NSError?
-        upspinClient = SpinnerNewClient(upspinConfig, &error)
-        if error != nil {
-            print("Error creating client \(String(describing: error))")
-            return
-        }
-        print("Created client \(upspinClient)")
+        print("Created configuration \(upspinConfig) public key \(upspinConfig.publicKey()) private key \(upspinConfig.privateKey())")
     }
     
     // Mark: Actions
     @IBAction func saveUserConfig(_ sender: UIButton) {
         print("Save user config called")
-        createConfig()
-        createClient()
+        saveConfig()
     }
     
 }
