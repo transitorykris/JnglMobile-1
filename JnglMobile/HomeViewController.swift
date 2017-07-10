@@ -34,7 +34,9 @@ class HomeViewController: UIViewController {
             let propertyListDecoder = PropertyListDecoder()
             upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
         } catch keychainError.failedToGet {
-            alert(title: "No config found", message: "Could not find an existing configuration in the keychain")
+            // Start with a blank configuration, the user will create one next
+            upspin = Upspin()
+            performSegue(withIdentifier: "Settings", sender: nil)
         } catch {
             alert(title: "Could not create client", message: "Could not reconstruct client from the keychain configuration")
         }
@@ -45,6 +47,10 @@ class HomeViewController: UIViewController {
     }
     
     func setDetails() {
+        if upspin == nil {
+            usernameLabel.text = "Please create your settings"
+            return
+        }
         usernameLabel.text = upspin.config.userName()
     }
     

@@ -29,8 +29,13 @@ class Upspin: Codable {
     var config: SpinnerClientConfig!
     var client: SpinnerClient!
     
-    // Hardcoded initialization
+    // Blank config
     init() {
+        config = SpinnerNewClientConfig()
+    }
+    
+    // Hardcoded initialization
+    init(defaults: Bool) {
         // Create a default config and client
         config = SpinnerNewClientConfig()
         config.setUserName("kris@jn.gl")
