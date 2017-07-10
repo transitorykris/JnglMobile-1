@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var dirServerTextField: UITextField!
     
     var upspin: Upspin!
+    var keychain: Keychain!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,24 +40,31 @@ class SettingsViewController: UIViewController {
         upspin.config.setStoreNetAddr(storeServerTextField.text)
         upspin.config.setDirNetAddr(dirServerTextField.text)
         
-        // Regenerate the public and private keys from the proquint
-        var error: NSError?
-        let keys = SpinnerKeygen(proquintTextField.text, &error)
-        if error != nil {
-            print("Error regenerating keys \(String(describing: error))")
-            return
+        // Regenerate the public and private keys from the proquint if we got one
+        if proquintTextField.text != "" {
+            var error: NSError?
+            let keys = SpinnerKeygen(proquintTextField.text, &error)
+            if error != nil {
+                // TODO: throw and exception
+                return
+            }
+            upspin.config.setPublicKey(keys?.public())
+            upspin.config.setPrivateKey(keys?.private())
         }
-        upspin.config.setPublicKey(keys?.public())
-        upspin.config.setPrivateKey(keys?.private())
         
         upspin.createUpspinClient()
         
-        print("Created configuration \(upspin.config) public key \(upspin.config.publicKey())")
+        // Save to the keychain
+        do {
+            try keychain.saveItem(item: upspin)
+        } catch {
+            // TODO: Throw an exception
+            return
+        }
     }
     
     // Mark: Actions
     @IBAction func saveUserConfig(_ sender: UIButton) {
-        print("Save user config called")
         saveConfig()
     }
     
