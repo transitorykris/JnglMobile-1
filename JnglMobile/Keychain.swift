@@ -8,81 +8,79 @@
 
 import Foundation
 
+enum keychainError: Error {
+    case failedToSave
+    case failedToDelete
+    case failedToUpdate
+    case failedToGet
+}
+
 class Keychain: NSObject {
     
     func saveItem(item: Upspin) throws {
-        let plistEncoder = PropertyListEncoder()
-        let data = try plistEncoder.encode(item)
+        let encoder = PropertyListEncoder()
+        let data = try encoder.encode(item)
         let attributes: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrLabel: "JnglMobile",
             kSecAttrAccount: item.config.userName(),
-            kSecAttrDescription: "An Upspin identity",
             kSecValueData: data,
-            kSecReturnData: kCFBooleanTrue,
             ] as CFDictionary
-        var addResult: AnyObject?
-        let status = SecItemAdd(attributes, &addResult)
+        var result: AnyObject?
+        let status = SecItemAdd(attributes, &result)
         switch status {
+        case noErr:
+            return
         case errSecDuplicateItem:
             try updateKeychainItem(item: item)
-        case 0:
-            // Success
-            return
         default:
-            // TODO: throw an exception
-            fatalError("Failed to save keychain item: \(status)")
+            throw keychainError.failedToSave
         }
     }
     
-    func deleteKeychainItem() {
+    func deleteAllKeychainItems() throws {
         // Delete the item if it exists
-        let deleteQuery: CFDictionary = [
+        let query: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrLabel: "JnglMobile",
             kSecMatchLimit: kSecMatchLimitAll,
             ] as CFDictionary
-        let _ = SecItemDelete(deleteQuery)
-        // TODO: Throw an exception
+        let status = SecItemDelete(query)
+        if status != noErr {
+            throw keychainError.failedToUpdate
+        }
     }
     
     func updateKeychainItem(item: Upspin) throws {
         // Modify the keychain item
-        let plistEncoder = PropertyListEncoder()
-        plistEncoder.outputFormat = PropertyListSerialization.PropertyListFormat.xml
-        let data = try plistEncoder.encode(item)
-        let updateQuery: CFDictionary = [
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = PropertyListSerialization.PropertyListFormat.xml
+        let data = try encoder.encode(item)
+        let query: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrLabel: "JnglMobile",
             kSecAttrAccount: item.config.userName(),
             ] as CFDictionary
         let update: CFDictionary = [
             kSecValueData: data,
             ] as CFDictionary
-        let status = SecItemUpdate(updateQuery, update)
+        let status = SecItemUpdate(query, update)
         if status != noErr {
-            // TODO: throw exceptions instead
-            fatalError("Failed to update keychain item: \(status)")
+            throw keychainError.failedToUpdate
         }
     }
     
-    func getKeychainItem() -> Data? {
+    // For now we assume there's just one account configured
+    func getKeychainItem() throws -> Data? {
         // Retrieve the keychain item
         let query: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrLabel: "JnglMobile",
-            kSecAttrAccount: "kris@jn.gl",
             kSecReturnData: kCFBooleanTrue,
-            //kSecReturnAttributes: kCFBooleanTrue,
             kSecMatchLimit: kSecMatchLimitOne,
             ] as CFDictionary
-        var queryResult: AnyObject?
-        let queryStatus = SecItemCopyMatching(query, &queryResult)
-        if queryStatus != noErr {
-            // TODO: This should really throw an exception
-            return nil
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query, &result)
+        if status != noErr {
+            throw keychainError.failedToGet
         }
-        let data = queryResult as? Data
+        let data = result as? Data
         return data
     }
     

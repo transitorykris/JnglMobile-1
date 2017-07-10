@@ -9,6 +9,11 @@
 import UIKit
 import Spinner
 
+enum saveConfigError: Error {
+    case invalidProquint
+    case keychainSaveFailed
+}
+
 class SettingsViewController: UIViewController {
     
     // MARK: Properties
@@ -33,7 +38,14 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    func saveConfig() {
+    func alert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: false, completion: nil)
+    }
+    
+    func saveConfig() throws {
         // Set the easy stuff
         upspin.config.setUserName(usernameTextField.text)
         upspin.config.setKeyNetAddr(keyServerTextField.text)
@@ -45,27 +57,33 @@ class SettingsViewController: UIViewController {
             var error: NSError?
             let keys = SpinnerKeygen(proquintTextField.text, &error)
             if error != nil {
-                // TODO: throw and exception
-                return
+                throw saveConfigError.invalidProquint
             }
             upspin.config.setPublicKey(keys?.public())
             upspin.config.setPrivateKey(keys?.private())
         }
         
-        upspin.createUpspinClient()
+        try upspin.createUpspinClient()
         
         // Save to the keychain
         do {
             try keychain.saveItem(item: upspin)
         } catch {
-            // TODO: Throw an exception
-            return
+            throw saveConfigError.keychainSaveFailed
         }
     }
     
     // Mark: Actions
     @IBAction func saveUserConfig(_ sender: UIButton) {
-        saveConfig()
+        do {
+            try saveConfig()
+        } catch saveConfigError.invalidProquint {
+            alert(title: "Failed to save", message: "The supplied proquint could not be used to regenerate your keys")
+        } catch saveConfigError.keychainSaveFailed {
+            alert(title: "Failed to save", message: "Problem saving your configuration to the keychain")
+        } catch {
+            alert(title: "Failed to save", message: "An unknown error occured while saving")
+        }
     }
     
 }

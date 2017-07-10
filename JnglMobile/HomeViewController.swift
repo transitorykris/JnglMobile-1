@@ -27,20 +27,16 @@ class HomeViewController: UIViewController {
         fileContentsTextView.layer.borderColor = UIColor.lightGray.cgColor
         fileContentsTextView.layer.borderWidth = 1
         
-        // Try to get our user's config from the Keychain
+        // Try to get our user's config from the Keychain and create our client
         keychain = Keychain()
-        let data = keychain.getKeychainItem()
-        if data == nil {
-            // TODO: Send them to settings
-            fatalError("No config found in keychain")
-        }
-        
-        // Create an upspin client with this config
-        let propertyListDecoder = PropertyListDecoder()
         do {
+            let data = try keychain.getKeychainItem()
+            let propertyListDecoder = PropertyListDecoder()
             upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
+        } catch keychainError.failedToGet {
+            alert(title: "No config found", message: "Could not find an existing configuration in the keychain")
         } catch {
-            fatalError("Could not reconstruct config and client")
+            alert(title: "Could not create client", message: "Could not reconstruct client from the keychain configuration")
         }
     }
     
@@ -50,6 +46,13 @@ class HomeViewController: UIViewController {
     
     func setDetails() {
         usernameLabel.text = upspin.config.userName()
+    }
+    
+    func alert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: false, completion: nil)
     }
     
     // MARK: - Navigation
@@ -78,14 +81,14 @@ class HomeViewController: UIViewController {
         do {
             try contents = upspin.client.get(filenameTextField.text)
         } catch let error as NSError {
-            fileContentsTextView.text = "Failed to get file \(error)"
+            alert(title: "Failed to get file", message: "\(error)")
             return
         }
         
         if let contentsString = String(data: contents, encoding: .utf8) {
             fileContentsTextView.text = contentsString
         } else {
-            fileContentsTextView.text = "Failed to convert data to string"
+            alert(title: "Cannot display file", message: "Unable to convert data into a string for display")
         }
     }
     
@@ -95,7 +98,7 @@ class HomeViewController: UIViewController {
         do {
             try dirEntry = upspin.client.glob(filenameTextField.text)
         } catch let error as NSError {
-            fileContentsTextView.text = "Failed to get listing \(error)"
+            alert(title: "Cannot list files", message: "\(error)")
             return
         }
         
@@ -112,7 +115,7 @@ class HomeViewController: UIViewController {
         do {
             try upspin.client.put(filenameTextField.text, data: fileContentsTextView.text.data(using: String.Encoding.utf8))
         } catch {
-            // TODO: let the user know something went wrong
+            alert(title: "Failed to put file", message: "\(error)")
             return
         }
     }
