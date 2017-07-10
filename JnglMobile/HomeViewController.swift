@@ -9,6 +9,8 @@
 import UIKit
 import Spinner
 
+let settingsSegue:String = "Settings"
+
 class HomeViewController: UIViewController {
     
     // MARK: Properties
@@ -36,7 +38,7 @@ class HomeViewController: UIViewController {
         } catch keychainError.failedToGet {
             // Start with a blank configuration, the user will create one next
             upspin = Upspin()
-            performSegue(withIdentifier: "Settings", sender: nil)
+            performSegue(withIdentifier: settingsSegue, sender: nil)
         } catch {
             alert(title: "Could not create client", message: "Could not reconstruct client from the keychain configuration")
         }
@@ -67,7 +69,7 @@ class HomeViewController: UIViewController {
         
         switch(segue.identifier ?? "") {
             
-        case "Settings":
+        case settingsSegue:
             guard let settingsViewController = segue.destination as? SettingsViewController else {
                 fatalError("Unexpected destination")
             }
