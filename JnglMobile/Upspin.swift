@@ -35,20 +35,17 @@ class Upspin: Codable {
     }
     
     // Hardcoded initialization
-    init(defaults: Bool) {
-        // Create a default config and client
+    init(userName: String, keyNetAddr: String, storeNetAddr: String, dirNetAddr: String, proquint: String) {
         config = SpinnerNewClientConfig()
-        config.setUserName("kris@jn.gl")
-        config.setKeyNetAddr("key.upspin.io:443")
-        config.setStoreNetAddr("upspin.jn.gl:443")
-        config.setDirNetAddr("upspin.jn.gl:443")
+        config.setUserName(userName)
+        config.setKeyNetAddr(keyNetAddr)
+        config.setStoreNetAddr(storeNetAddr)
+        config.setDirNetAddr(dirNetAddr)
         
-        // Generate a hardcoded fake set of keys
         var error: NSError?
-        let keys = SpinnerKeygen("lusab-babad-gutih-tugad.gutuk-bisog-mudof-sakat", &error)
+        let keys = SpinnerKeygen(proquint, &error)
         if error != nil {
-            print("Error regenerating keys \(String(describing: error))")
-            return
+            fatalError("Error regenerating keys \(String(describing: error))")
         }
         config.setPublicKey(keys?.public())
         config.setPrivateKey(keys?.private())
