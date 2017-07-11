@@ -15,6 +15,8 @@ enum keychainError: Error {
     case failedToGet
 }
 
+let keychainAccessGroupName = "7UXE8T6JQ7.co.aheadbyacentury.JnglMobile"
+
 class Keychain: NSObject {
     
     func saveItem(item: Upspin) throws {
@@ -22,6 +24,7 @@ class Keychain: NSObject {
         let data = try encoder.encode(item)
         let attributes: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessGroup: keychainAccessGroupName,
             kSecAttrAccount: item.config.userName(),
             kSecValueData: data,
             ] as CFDictionary
@@ -41,6 +44,7 @@ class Keychain: NSObject {
         // Delete the item if it exists
         let query: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessGroup: keychainAccessGroupName,
             kSecMatchLimit: kSecMatchLimitAll,
             ] as CFDictionary
         let status = SecItemDelete(query)
@@ -59,6 +63,7 @@ class Keychain: NSObject {
             kSecAttrAccount: item.config.userName(),
             ] as CFDictionary
         let update: CFDictionary = [
+            kSecAttrAccessGroup: keychainAccessGroupName,
             kSecValueData: data,
             ] as CFDictionary
         let status = SecItemUpdate(query, update)
@@ -72,6 +77,7 @@ class Keychain: NSObject {
         // Retrieve the keychain item
         let query: CFDictionary = [
             kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessGroup: keychainAccessGroupName,
             kSecReturnData: kCFBooleanTrue,
             kSecMatchLimit: kSecMatchLimitOne,
             ] as CFDictionary

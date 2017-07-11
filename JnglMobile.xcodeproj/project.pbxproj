@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012466581F143CF100315972 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012466571F143CF100315972 /* ShareViewController.swift */; };
+		0124665B1F143CF100315972 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012466591F143CF100315972 /* MainInterface.storyboard */; };
+		0124665F1F143CF100315972 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 012466551F143CF100315972 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01C795891F1442EF00B6D516 /* Upspin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA761F0F191D00DAD2AB /* Upspin.swift */; };
+		01C7958A1F1442EF00B6D516 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
+		01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
 		01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */; };
 		01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */; };
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
@@ -18,7 +24,37 @@
 		01EDDA7B1F10555D00DAD2AB /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0124665D1F143CF100315972 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01EDDA281F0DD16700DAD2AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 012466541F143CF100315972;
+			remoteInfo = Share;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		012466631F143CF100315972 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0124665F1F143CF100315972 /* Share.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		012466551F143CF100315972 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		012466571F143CF100315972 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		0124665A1F143CF100315972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		0124665C1F143CF100315972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C7958C1F14456900B6D516 /* JnglMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JnglMobile.entitlements; sourceTree = "<group>"; };
+		01C7958D1F144A2200B6D516 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		01EDDA301F0DD16800DAD2AB /* JnglMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JnglMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +71,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		012466521F143CF100315972 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01EDDA2D1F0DD16800DAD2AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,12 +90,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012466561F143CF100315972 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				01C7958D1F144A2200B6D516 /* Share.entitlements */,
+				012466571F143CF100315972 /* ShareViewController.swift */,
+				012466591F143CF100315972 /* MainInterface.storyboard */,
+				0124665C1F143CF100315972 /* Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		01EDDA271F0DD16700DAD2AB = {
 			isa = PBXGroup;
 			children = (
 				01EDDA641F0EBA0400DAD2AB /* LICENSE.md */,
 				01EDDA631F0EB98500DAD2AB /* README.md */,
 				01EDDA321F0DD16800DAD2AB /* JnglMobile */,
+				012466561F143CF100315972 /* Share */,
 				01EDDA311F0DD16800DAD2AB /* Products */,
 				01EDDA6F1F0EC97B00DAD2AB /* Frameworks */,
 			);
@@ -61,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				01EDDA301F0DD16800DAD2AB /* JnglMobile.app */,
+				012466551F143CF100315972 /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +125,7 @@
 		01EDDA321F0DD16800DAD2AB /* JnglMobile */ = {
 			isa = PBXGroup;
 			children = (
+				01C7958C1F14456900B6D516 /* JnglMobile.entitlements */,
 				01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */,
 				01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */,
 				01EDDA371F0DD16800DAD2AB /* Main.storyboard */,
@@ -92,6 +150,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		012466541F143CF100315972 /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 012466601F143CF100315972 /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				012466511F143CF100315972 /* Sources */,
+				012466521F143CF100315972 /* Frameworks */,
+				012466531F143CF100315972 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Share;
+			productName = Share;
+			productReference = 012466551F143CF100315972 /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		01EDDA2F1F0DD16800DAD2AB /* JnglMobile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01EDDA421F0DD16800DAD2AB /* Build configuration list for PBXNativeTarget "JnglMobile" */;
@@ -99,10 +174,12 @@
 				01EDDA2C1F0DD16800DAD2AB /* Sources */,
 				01EDDA2D1F0DD16800DAD2AB /* Frameworks */,
 				01EDDA2E1F0DD16800DAD2AB /* Resources */,
+				012466631F143CF100315972 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0124665E1F143CF100315972 /* PBXTargetDependency */,
 			);
 			name = JnglMobile;
 			productName = JnglMobile;
@@ -119,9 +196,22 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Ahead by a Century, LLC";
 				TargetAttributes = {
+					012466541F143CF100315972 = {
+						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
 					01EDDA2F1F0DD16800DAD2AB = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -139,11 +229,20 @@
 			projectRoot = "";
 			targets = (
 				01EDDA2F1F0DD16800DAD2AB /* JnglMobile */,
+				012466541F143CF100315972 /* Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		012466531F143CF100315972 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0124665B1F143CF100315972 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01EDDA2E1F0DD16800DAD2AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +256,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		012466511F143CF100315972 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C795891F1442EF00B6D516 /* Upspin.swift in Sources */,
+				01C7958A1F1442EF00B6D516 /* Keychain.swift in Sources */,
+				012466581F143CF100315972 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01EDDA2C1F0DD16800DAD2AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,7 +280,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0124665E1F143CF100315972 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 012466541F143CF100315972 /* Share */;
+			targetProxy = 0124665D1F143CF100315972 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		012466591F143CF100315972 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0124665A1F143CF100315972 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		01EDDA371F0DD16800DAD2AB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -191,6 +316,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		012466611F143CF100315972 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Share/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		012466621F143CF100315972 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Share/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		01EDDA401F0DD16800DAD2AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,7 +460,9 @@
 		01EDDA431F0DD16800DAD2AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JnglMobile/JnglMobile.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
@@ -319,7 +484,9 @@
 		01EDDA441F0DD16800DAD2AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JnglMobile/JnglMobile.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
@@ -341,6 +508,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		012466601F143CF100315972 /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				012466611F143CF100315972 /* Debug */,
+				012466621F143CF100315972 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		01EDDA2B1F0DD16700DAD2AB /* Build configuration list for PBXProject "JnglMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
