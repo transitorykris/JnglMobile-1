@@ -84,6 +84,11 @@ class SettingsViewController: UIViewController {
         } catch {
             alert(title: "Failed to save", message: "An unknown error occured while saving")
         }
+        
+        // Now send them back home
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "NavigationController")
+        self.present(viewController, animated: true)
     }
     
 }

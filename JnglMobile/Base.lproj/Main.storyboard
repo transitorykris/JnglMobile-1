@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gAI-NI-jmB">
             <objects>
-                <navigationController id="cdz-5j-Cpi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" id="cdz-5j-Cpi" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pkx-75-XBM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
         <!--Home-->
         <scene sceneID="c5F-2z-b9t">
             <objects>
-                <viewController id="Muu-Cc-rdw" customClass="HomeViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="Muu-Cc-rdw" customClass="HomeViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="7tV-js-W13">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -112,7 +112,7 @@
         <!--Settings-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SettingsViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="BYZ-38-t0r" customClass="SettingsViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>

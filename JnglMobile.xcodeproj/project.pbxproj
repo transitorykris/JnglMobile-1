@@ -13,6 +13,9 @@
 		01C795891F1442EF00B6D516 /* Upspin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA761F0F191D00DAD2AB /* Upspin.swift */; };
 		01C7958A1F1442EF00B6D516 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
 		01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
+		01C7958F1F153B5900B6D516 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C7958E1F153B5900B6D516 /* Welcome.storyboard */; };
+		01C795B81F15548900B6D516 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795B71F15548900B6D516 /* WelcomeViewController.swift */; };
+		01C795BA1F156B1A00B6D516 /* page3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795B91F156B1A00B6D516 /* page3ViewController.swift */; };
 		01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */; };
 		01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */; };
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		0124665C1F143CF100315972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01C7958C1F14456900B6D516 /* JnglMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JnglMobile.entitlements; sourceTree = "<group>"; };
 		01C7958D1F144A2200B6D516 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
+		01C7958E1F153B5900B6D516 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
+		01C795B71F15548900B6D516 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		01C795B91F156B1A00B6D516 /* page3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = page3ViewController.swift; sourceTree = "<group>"; };
 		01EDDA301F0DD16800DAD2AB /* JnglMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JnglMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,16 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		01C795B21F153D7400B6D516 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				01C7958E1F153B5900B6D516 /* Welcome.storyboard */,
+				01C795B71F15548900B6D516 /* WelcomeViewController.swift */,
+				01C795B91F156B1A00B6D516 /* page3ViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
 		01EDDA271F0DD16700DAD2AB = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +141,7 @@
 		01EDDA321F0DD16800DAD2AB /* JnglMobile */ = {
 			isa = PBXGroup;
 			children = (
+				01C795B21F153D7400B6D516 /* Welcome */,
 				01C7958C1F14456900B6D516 /* JnglMobile.entitlements */,
 				01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */,
 				01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */,
@@ -248,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01EDDA3E1F0DD16800DAD2AB /* LaunchScreen.storyboard in Resources */,
+				01C7958F1F153B5900B6D516 /* Welcome.storyboard in Resources */,
 				01EDDA3B1F0DD16800DAD2AB /* Assets.xcassets in Resources */,
 				01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */,
 			);
@@ -273,8 +291,10 @@
 				01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */,
 				01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */,
 				01EDDA771F0F191D00DAD2AB /* Upspin.swift in Sources */,
+				01C795B81F15548900B6D516 /* WelcomeViewController.swift in Sources */,
 				01EDDA751F0F0C8500DAD2AB /* HomeViewController.swift in Sources */,
 				01EDDA7B1F10555D00DAD2AB /* Keychain.swift in Sources */,
+				01C795BA1F156B1A00B6D516 /* page3ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
