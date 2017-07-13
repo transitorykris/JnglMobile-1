@@ -41,5 +41,24 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>co.aheadbyacentury.upspin</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>upspin</string>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>co.aheadbyacentury.jngl</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>jngl</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

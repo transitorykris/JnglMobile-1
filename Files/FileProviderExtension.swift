@@ -13,11 +13,8 @@ class FileProviderExtension: NSFileProviderExtension {
     // MARK: Properties
     
     // Using jngl for now, maybe upspin is better?
-    // TODO: register the jngl scheme
     let scheme = "jngl"
     var upspin: Upspin!
-    
-    //var fileManager = FileManager()
     
     func createUpspinClient() {
         // Try to get our user's config from the Keychain and create our client
