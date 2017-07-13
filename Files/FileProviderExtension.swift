@@ -43,7 +43,7 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {
-        print("FileProviderExtension: item \(identifier)")
+        print("Not implemented: FileProviderExtension: item \(identifier)")
         
         // resolve the given identifier to a record in the model
         
@@ -59,8 +59,6 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        print("FileProviderExtension: urlForItem \(identifier)")
-        
         /*
         // resolve the given identifier to a file on disk
         guard let item = try? item(for: identifier) else {
@@ -86,8 +84,6 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
-        print("FileProviderExtension: persistentIdentifierForItem \(url)")
-        
         /*
         // resolve the given URL to a persistent identifier using a database
         let pathComponents = url.pathComponents
@@ -105,7 +101,7 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
-        print("FileProviderExtension: providePlaceholder at \(url.absoluteString)")
+        print("Not implemented: FileProviderExtension: providePlaceholder at \(url.absoluteString)")
         
         // Override this method to provide a placeholder for the given URL
         
@@ -119,7 +115,7 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
-        print("FileProviderExtension: startProvidingItem")
+        print("Not implemented: FileProviderExtension: startProvidingItem")
         
         // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion handler
         
@@ -152,7 +148,7 @@ class FileProviderExtension: NSFileProviderExtension {
     
     
     override func itemChanged(at url: URL) {
-        print("FileProviderExtension: itemChanged")
+        print("Not implemented: FileProviderExtension: itemChanged")
         
         // Called at some point after the file has changed; the provider may then trigger an upload
         
@@ -165,7 +161,7 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func stopProvidingItem(at url: URL) {
-        print("FileProviderExtension: stopProvidingItem")
+        print("Not implemented: FileProviderExtension: stopProvidingItem")
         
         // Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove the content file.
         // Care should be taken that the corresponding placeholder file stays behind after the content file has been deleted.
@@ -202,8 +198,6 @@ class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Enumeration
     
     override func enumerator(forContainerItemIdentifier containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
-        print("FileProviderExtension: enumerator")
-        
         var maybeEnumerator: NSFileProviderEnumerator? = nil
         
         switch containerItemIdentifier {

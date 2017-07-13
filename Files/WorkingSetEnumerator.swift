@@ -12,7 +12,7 @@ import Spinner
 class WorkingSetEnumerator: FileProviderEnumerator {
     
     override init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
-        print("WorkingSetEnumerator: init")
+        print("Not implemented: WorkingSetEnumerator: init")
         
         super.init(enumeratedItemIdentifier: enumeratedItemIdentifier, upspin: upspin)
     }

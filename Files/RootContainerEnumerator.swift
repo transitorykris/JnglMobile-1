@@ -12,14 +12,10 @@ import Spinner
 class RootContainerEnumerator: FileProviderEnumerator {
     
     override init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
-        print("FileProviderEnumerator: init")
-        
         super.init(enumeratedItemIdentifier: enumeratedItemIdentifier, upspin: upspin)
     }
     
     override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
-        print("RootContainerEnumerator: enumerateItems")
-        
         // perform a server request to fetch root directory contents
         let userName = upspin.config.userName()!
         var listing = listDirectory(path: userName, parent: enumeratedItemIdentifier)

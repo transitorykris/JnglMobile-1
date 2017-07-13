@@ -26,7 +26,6 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var lastModified: Date
     
     init(name: String, isDir: Bool, isLink: Bool, lastModified: Date, parent: NSFileProviderItemIdentifier) {
-        print("Creating FileProviderItem \(name)")
         self.name = name
         self.parent = parent.rawValue
         if isDir {

@@ -16,15 +16,13 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     var upspin: Upspin!
     
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
-        print("FileProviderEnumerator: init")
-        
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
         self.upspin = upspin
         super.init()
     }
 
     func invalidate() {
-        print("FileProviderEnumerator: invalidate")
+        print("Not implemented: FileProviderEnumerator: invalidate")
         
         // TODO: perform invalidation of server connection if necessary
     }
@@ -34,10 +32,8 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         
         do {
             let filePath = NSString.path(withComponents: [path, "*"])
-            print("Listing files for path \(filePath)")
             try dirEntry = upspin?.client.glob(filePath)
         } catch let error as NSError {
-            print("Cannot list files \(error)")
             return []
         }
         
@@ -68,37 +64,11 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     }
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
-        print("FileProviderEnumerator: enumerateItems")
-        
-        // inspect the page to determine whether this is an initial or a follow-up request
-        switch page as NSFileProviderPage {
-        case NSFileProviderInitialPageSortedByName:
-            print("Not implemented: request for initial page sorted by name")
-        case NSFileProviderInitialPageSortedByDate:
-            print("Not implemented: request for initial page sorted by date")
-        default:
-            print("Not implemented: request for page starting at specific page")
-        }
-        
-         // If this is an enumerator for a directory, the root container or all directories:
-        switch enumeratedItemIdentifier {
-        case NSFileProviderItemIdentifier.rootContainer:
-            print("Not implemented: handling request for root container")
-            // perform a server request to fetch directory contents
-        case NSFileProviderItemIdentifier.workingSet:
-            print("Not implemented: handling request for the working set")
-            // perform a server request to update your local database
-            // fetch the active set from your local database
-        default:
-            print("Unknown enumeratedItemIdentifier \(enumeratedItemIdentifier)")
-        }
-        
-        // Note: if an error occurs call
-        // observer.finishEnumeratingWithError(<#T##error: Error##Error#>)
+        print("Not implemented: FileProviderEnumerator: enumerateItems")
     }
     
     func enumerateChanges(for observer: NSFileProviderChangeObserver, fromSyncAnchor anchor: Data) {
-        print("FileProviderEnumerator: enumerateChanges")
+        print("Not implemented: FileProviderEnumerator: enumerateChanges")
         
         /* TODO:
          - query the server for updates since the passed-in sync anchor

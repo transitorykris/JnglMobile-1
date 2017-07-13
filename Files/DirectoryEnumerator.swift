@@ -12,14 +12,10 @@ import Spinner
 class DirectoryEnumerator: FileProviderEnumerator {
     
     override init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
-        print("DirectoryEnumerator: init")
-        
         super.init(enumeratedItemIdentifier: enumeratedItemIdentifier, upspin: upspin)
     }
     
-    override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
-        print("DirectoryEnumerator: enumerateItems")
-        
+    override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {        
         var listing = listDirectory(path: enumeratedItemIdentifier.rawValue, parent: enumeratedItemIdentifier)
         
         // inspect the page to determine whether this is an initial or a follow-up request
