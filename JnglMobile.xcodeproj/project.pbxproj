@@ -20,6 +20,12 @@
 		01C795C41F157DEC00B6D516 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795C31F157DEC00B6D516 /* FileProviderItem.swift */; };
 		01C795C61F157DEC00B6D516 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */; };
 		01C795CB1F157DEC00B6D516 /* Files.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 01C795BF1F157DEC00B6D516 /* Files.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01E010BD1F171CAF00F05A4A /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
+		01E010BE1F171CEA00F05A4A /* Upspin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA761F0F191D00DAD2AB /* Upspin.swift */; };
+		01E010BF1F171CF900F05A4A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
+		01E010C11F172D5800F05A4A /* RootContainerEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C01F172D5800F05A4A /* RootContainerEnumerator.swift */; };
+		01E010C31F173BB500F05A4A /* DirectoryEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C21F173BB500F05A4A /* DirectoryEnumerator.swift */; };
+		01E010C51F17421B00F05A4A /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C41F17421B00F05A4A /* WorkingSetEnumerator.swift */; };
 		01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */; };
 		01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */; };
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
@@ -79,6 +85,9 @@
 		01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
 		01C795C71F157DEC00B6D516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01C795C81F157DEC00B6D516 /* Files.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Files.entitlements; sourceTree = "<group>"; };
+		01E010C01F172D5800F05A4A /* RootContainerEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerEnumerator.swift; sourceTree = "<group>"; };
+		01E010C21F173BB500F05A4A /* DirectoryEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryEnumerator.swift; sourceTree = "<group>"; };
+		01E010C41F17421B00F05A4A /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
 		01EDDA301F0DD16800DAD2AB /* JnglMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JnglMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E010BD1F171CAF00F05A4A /* Spinner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +158,11 @@
 				01C795C11F157DEC00B6D516 /* FileProviderExtension.swift */,
 				01C795C31F157DEC00B6D516 /* FileProviderItem.swift */,
 				01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */,
+				01E010C01F172D5800F05A4A /* RootContainerEnumerator.swift */,
 				01C795C71F157DEC00B6D516 /* Info.plist */,
 				01C795C81F157DEC00B6D516 /* Files.entitlements */,
+				01E010C21F173BB500F05A4A /* DirectoryEnumerator.swift */,
+				01E010C41F17421B00F05A4A /* WorkingSetEnumerator.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -280,6 +293,11 @@
 					};
 					01C795BE1F157DEC00B6D516 = {
 						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					01EDDA2F1F0DD16800DAD2AB = {
 						CreatedOnToolsVersion = 9.0;
@@ -356,6 +374,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E010BF1F171CF900F05A4A /* Keychain.swift in Sources */,
+				01E010C11F172D5800F05A4A /* RootContainerEnumerator.swift in Sources */,
+				01E010BE1F171CEA00F05A4A /* Upspin.swift in Sources */,
+				01E010C31F173BB500F05A4A /* DirectoryEnumerator.swift in Sources */,
+				01E010C51F17421B00F05A4A /* WorkingSetEnumerator.swift in Sources */,
 				01C795C21F157DEC00B6D516 /* FileProviderExtension.swift in Sources */,
 				01C795C41F157DEC00B6D516 /* FileProviderItem.swift in Sources */,
 				01C795C61F157DEC00B6D516 /* FileProviderEnumerator.swift in Sources */,
@@ -462,6 +485,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Files/Files.entitlements;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Files/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Files;
@@ -477,6 +504,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Files/Files.entitlements;
 				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Files/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Files;
@@ -657,6 +688,7 @@
 				01C795CD1F157DEC00B6D516 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01EDDA2B1F0DD16700DAD2AB /* Build configuration list for PBXProject "JnglMobile" */ = {
 			isa = XCConfigurationList;

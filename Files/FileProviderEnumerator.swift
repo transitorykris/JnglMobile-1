@@ -7,15 +7,19 @@
 //
 
 import FileProvider
+import Spinner
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     
     var enumeratedItemIdentifier: NSFileProviderItemIdentifier
     
-    init(enumeratedItemIdentifier: NSFileProviderItemIdentifier) {
+    var upspin: Upspin!
+    
+    init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
         print("FileProviderEnumerator: init")
         
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
+        self.upspin = upspin
         super.init()
     }
 
@@ -23,6 +27,29 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         print("FileProviderEnumerator: invalidate")
         
         // TODO: perform invalidation of server connection if necessary
+    }
+    
+    func listDirectory(path: String, parent: NSFileProviderItemIdentifier) -> [FileProviderItem] {
+        var dirEntry: SpinnerDirEntry?
+        
+        do {
+            let filePath = NSString.path(withComponents: [path, "*"])
+            print("Listing files for path \(filePath)")
+            try dirEntry = upspin?.client.glob(filePath)
+        } catch let error as NSError {
+            print("Cannot list files \(error)")
+            return []
+        }
+        
+        var items: [FileProviderItem] = []
+        var entry = dirEntry
+        while entry != nil {
+            let item = FileProviderItem(name: entry!.name(), isDir: entry!.isDir(), isLink: entry!.isLink(), parent: parent)
+            items.append(item)
+            entry = entry?.next()
+        }
+        
+        return items
     }
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
@@ -39,13 +66,9 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         }
         
          // If this is an enumerator for a directory, the root container or all directories:
-         // - perform a server request to fetch directory contents
         switch enumeratedItemIdentifier {
         case NSFileProviderItemIdentifier.rootContainer:
             print("Not implemented: handling request for root container")
-            // perform a server request to fetch directory contents
-        case NSFileProviderItemIdentifier.allDirectories:
-            print("Not implemented: handling request for all directories")
             // perform a server request to fetch directory contents
         case NSFileProviderItemIdentifier.workingSet:
             print("Not implemented: handling request for the working set")
@@ -53,23 +76,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
             // fetch the active set from your local database
         default:
             print("Unknown enumeratedItemIdentifier \(enumeratedItemIdentifier)")
-            return
         }
-        
-        // inform the observer about the items returned by the server (possibly multiple times)
-        // Hardcode an item..
-        let updatedItems = [
-            FileProviderItem(name: "test.txt", isDir: false, isLink: false, parent: enumeratedItemIdentifier),
-            FileProviderItem(name: "MyFolder", isDir: true, isLink: false, parent: enumeratedItemIdentifier),
-            FileProviderItem(name: "photo.jpg", isDir: false, isLink: false, parent: enumeratedItemIdentifier),
-            FileProviderItem(name: "unknownfile", isDir: false, isLink: false, parent: enumeratedItemIdentifier),
-            FileProviderItem(name: "asymlink", isDir: false, isLink: true, parent: enumeratedItemIdentifier),
-            ]
-        observer.didEnumerate(updatedItems)
-        
-        // inform the observer that you are finished with this page
-        // nil seems to signal that there are no more pages
-        observer.finishEnumerating(upToPage: nil)
         
         // Note: if an error occurs call
         // observer.finishEnumeratingWithError(<#T##error: Error##Error#>)

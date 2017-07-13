@@ -15,12 +15,31 @@ class FileProviderExtension: NSFileProviderExtension {
     // Using jngl for now, maybe upspin is better?
     // TODO: register the jngl scheme
     let scheme = "jngl"
-    let userName = "kris@jn.gl" // XXX temporary hardcoding
+    var upspin: Upspin!
     
     //var fileManager = FileManager()
     
+    func createUpspinClient() {
+        // Try to get our user's config from the Keychain and create our client
+        let keychain = Keychain()
+        var data: Data!
+        do {
+            data = try keychain.getKeychainItem()
+        } catch {
+            fatalError("No config found in keychain")
+        }
+        do {
+            let propertyListDecoder = PropertyListDecoder()
+            upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
+        } catch {
+            fatalError("Could not decode into an Upspin object")
+        }
+    }
+    
     override init() {
         super.init()
+        
+        createUpspinClient()
     }
     
     func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {
@@ -35,7 +54,7 @@ class FileProviderExtension: NSFileProviderExtension {
     func fileURLFrom(path: String) -> URL {
         var url = URLComponents()
         url.scheme = scheme
-        url.path = NSString.path(withComponents: [userName, path])
+        url.path = NSString.path(withComponents: [upspin.config.userName(), path])
         return url.url!
     }
     
@@ -186,21 +205,16 @@ class FileProviderExtension: NSFileProviderExtension {
         print("FileProviderExtension: enumerator")
         
         var maybeEnumerator: NSFileProviderEnumerator? = nil
-        if (containerItemIdentifier == NSFileProviderItemIdentifier.rootContainer) {
-            print("Not implemented: Request to enumerate rootContainer")
-            maybeEnumerator = FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier)
-        } else if (containerItemIdentifier == NSFileProviderItemIdentifier.workingSet) {
-            print("Not implemented: Request to enumerate workingSet")
-            // TODO: instantiate an enumerator for the working set
-        } else if (containerItemIdentifier == NSFileProviderItemIdentifier.allDirectories) {
-            print("Not implemented: Request to enumerate allDirectories")
-            // TODO: instantiate an enumerator that recursively enumerates all directories
-        } else {
-            print("Not implemented: Request to enumerate a directory or a file")
-            // TODO: determine if the item is a directory or a file
-            // - for a directory, instantiate an enumerator of its subitems
-            // - for a file, instantiate an enumerator that observes changes to the file
+        
+        switch containerItemIdentifier {
+        case .rootContainer:
+            maybeEnumerator = RootContainerEnumerator(enumeratedItemIdentifier: containerItemIdentifier, upspin: upspin)
+        case .workingSet:
+            maybeEnumerator = WorkingSetEnumerator(enumeratedItemIdentifier: containerItemIdentifier, upspin: upspin)
+        default:
+            maybeEnumerator = DirectoryEnumerator(enumeratedItemIdentifier: containerItemIdentifier, upspin: upspin)
         }
+        
         guard let enumerator = maybeEnumerator else {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo:[:])
         }

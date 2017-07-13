@@ -67,6 +67,7 @@ func Keygen(secretStr string) (*Keys, error) {
 type DirEntry struct {
 	Name         string
 	IsDir        bool
+	IsLink       bool
 	Size         int64
 	LastModified int64
 	Writer       string
@@ -121,6 +122,7 @@ func (c *Client) Glob(pattern string) (*DirEntry, error) {
 		dirEntry := &DirEntry{
 			Name:         string(de.Name),
 			IsDir:        de.IsDir(),
+			IsLink:       de.IsLink(),
 			Size:         size,
 			LastModified: int64(de.Time),
 			Writer:       string(de.Writer),

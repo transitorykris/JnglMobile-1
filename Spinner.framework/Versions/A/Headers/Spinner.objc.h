@@ -53,6 +53,8 @@
 - (void)setName:(NSString*)v;
 - (BOOL)isDir;
 - (void)setIsDir:(BOOL)v;
+- (BOOL)isLink;
+- (void)setIsLink:(BOOL)v;
 - (int64_t)size;
 - (void)setSize:(int64_t)v;
 - (int64_t)lastModified;
