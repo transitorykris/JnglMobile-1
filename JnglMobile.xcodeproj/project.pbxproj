@@ -16,6 +16,10 @@
 		01C7958F1F153B5900B6D516 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C7958E1F153B5900B6D516 /* Welcome.storyboard */; };
 		01C795B81F15548900B6D516 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795B71F15548900B6D516 /* WelcomeViewController.swift */; };
 		01C795BA1F156B1A00B6D516 /* page3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795B91F156B1A00B6D516 /* page3ViewController.swift */; };
+		01C795C21F157DEC00B6D516 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795C11F157DEC00B6D516 /* FileProviderExtension.swift */; };
+		01C795C41F157DEC00B6D516 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795C31F157DEC00B6D516 /* FileProviderItem.swift */; };
+		01C795C61F157DEC00B6D516 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */; };
+		01C795CB1F157DEC00B6D516 /* Files.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 01C795BF1F157DEC00B6D516 /* Files.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */; };
 		01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */; };
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
@@ -35,6 +39,13 @@
 			remoteGlobalIDString = 012466541F143CF100315972;
 			remoteInfo = Share;
 		};
+		01C795C91F157DEC00B6D516 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01EDDA281F0DD16700DAD2AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C795BE1F157DEC00B6D516;
+			remoteInfo = Files;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +55,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				01C795CB1F157DEC00B6D516 /* Files.appex in Embed App Extensions */,
 				0124665F1F143CF100315972 /* Share.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -61,6 +73,12 @@
 		01C7958E1F153B5900B6D516 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		01C795B71F15548900B6D516 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		01C795B91F156B1A00B6D516 /* page3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = page3ViewController.swift; sourceTree = "<group>"; };
+		01C795BF1F157DEC00B6D516 /* Files.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Files.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C795C11F157DEC00B6D516 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
+		01C795C31F157DEC00B6D516 /* FileProviderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderItem.swift; sourceTree = "<group>"; };
+		01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
+		01C795C71F157DEC00B6D516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C795C81F157DEC00B6D516 /* Files.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Files.entitlements; sourceTree = "<group>"; };
 		01EDDA301F0DD16800DAD2AB /* JnglMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JnglMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +100,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C795BC1F157DEC00B6D516 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +142,18 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		01C795C01F157DEC00B6D516 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				01C795C11F157DEC00B6D516 /* FileProviderExtension.swift */,
+				01C795C31F157DEC00B6D516 /* FileProviderItem.swift */,
+				01C795C51F157DEC00B6D516 /* FileProviderEnumerator.swift */,
+				01C795C71F157DEC00B6D516 /* Info.plist */,
+				01C795C81F157DEC00B6D516 /* Files.entitlements */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		01EDDA271F0DD16700DAD2AB = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +161,7 @@
 				01EDDA631F0EB98500DAD2AB /* README.md */,
 				01EDDA321F0DD16800DAD2AB /* JnglMobile */,
 				012466561F143CF100315972 /* Share */,
+				01C795C01F157DEC00B6D516 /* Files */,
 				01EDDA311F0DD16800DAD2AB /* Products */,
 				01EDDA6F1F0EC97B00DAD2AB /* Frameworks */,
 			);
@@ -134,6 +172,7 @@
 			children = (
 				01EDDA301F0DD16800DAD2AB /* JnglMobile.app */,
 				012466551F143CF100315972 /* Share.appex */,
+				01C795BF1F157DEC00B6D516 /* Files.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +223,23 @@
 			productReference = 012466551F143CF100315972 /* Share.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		01C795BE1F157DEC00B6D516 /* Files */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C795CE1F157DEC00B6D516 /* Build configuration list for PBXNativeTarget "Files" */;
+			buildPhases = (
+				01C795BB1F157DEC00B6D516 /* Sources */,
+				01C795BC1F157DEC00B6D516 /* Frameworks */,
+				01C795BD1F157DEC00B6D516 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Files;
+			productName = Files;
+			productReference = 01C795BF1F157DEC00B6D516 /* Files.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		01EDDA2F1F0DD16800DAD2AB /* JnglMobile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01EDDA421F0DD16800DAD2AB /* Build configuration list for PBXNativeTarget "JnglMobile" */;
@@ -197,6 +253,7 @@
 			);
 			dependencies = (
 				0124665E1F143CF100315972 /* PBXTargetDependency */,
+				01C795CA1F157DEC00B6D516 /* PBXTargetDependency */,
 			);
 			name = JnglMobile;
 			productName = JnglMobile;
@@ -220,6 +277,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					01C795BE1F157DEC00B6D516 = {
+						CreatedOnToolsVersion = 9.0;
 					};
 					01EDDA2F1F0DD16800DAD2AB = {
 						CreatedOnToolsVersion = 9.0;
@@ -247,6 +307,7 @@
 			targets = (
 				01EDDA2F1F0DD16800DAD2AB /* JnglMobile */,
 				012466541F143CF100315972 /* Share */,
+				01C795BE1F157DEC00B6D516 /* Files */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +318,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0124665B1F143CF100315972 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C795BD1F157DEC00B6D516 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +352,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01C795BB1F157DEC00B6D516 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C795C21F157DEC00B6D516 /* FileProviderExtension.swift in Sources */,
+				01C795C41F157DEC00B6D516 /* FileProviderItem.swift in Sources */,
+				01C795C61F157DEC00B6D516 /* FileProviderEnumerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01EDDA2C1F0DD16800DAD2AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +383,11 @@
 			isa = PBXTargetDependency;
 			target = 012466541F143CF100315972 /* Share */;
 			targetProxy = 0124665D1F143CF100315972 /* PBXContainerItemProxy */;
+		};
+		01C795CA1F157DEC00B6D516 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C795BE1F157DEC00B6D516 /* Files */;
+			targetProxy = 01C795C91F157DEC00B6D516 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -367,6 +450,36 @@
 				INFOPLIST_FILE = Share/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		01C795CC1F157DEC00B6D516 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Files/Files.entitlements;
+				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				INFOPLIST_FILE = Files/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Files;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		01C795CD1F157DEC00B6D516 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Files/Files.entitlements;
+				DEVELOPMENT_TEAM = 7UXE8T6JQ7;
+				INFOPLIST_FILE = Files/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aheadbyacentury.JnglMobile.Files;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -536,6 +649,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		01C795CE1F157DEC00B6D516 /* Build configuration list for PBXNativeTarget "Files" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C795CC1F157DEC00B6D516 /* Debug */,
+				01C795CD1F157DEC00B6D516 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		01EDDA2B1F0DD16700DAD2AB /* Build configuration list for PBXProject "JnglMobile" */ = {
 			isa = XCConfigurationList;
