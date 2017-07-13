@@ -11,10 +11,6 @@ import Spinner
 
 class DirectoryEnumerator: FileProviderEnumerator {
     
-    override init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
-        super.init(enumeratedItemIdentifier: enumeratedItemIdentifier, upspin: upspin)
-    }
-    
     override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {        
         var listing = listDirectory(path: enumeratedItemIdentifier.rawValue, parent: enumeratedItemIdentifier)
         

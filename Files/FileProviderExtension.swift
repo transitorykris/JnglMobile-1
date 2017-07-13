@@ -74,7 +74,6 @@ class FileProviderExtension: NSFileProviderExtension {
          */
         
         let url = fileURLFrom(path: identifier.rawValue)
-        print("FileProviderExtension: urlForItem returning \(String(describing: url))")
         return url
     }
     
@@ -96,7 +95,6 @@ class FileProviderExtension: NSFileProviderExtension {
          */
         
         let identifier = identifierFrom(url: url)
-        print("FileProviderExtension: persistentIdentifierForItem \(identifier)")
         return identifier
     }
     
