@@ -27,15 +27,11 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         // TODO: perform invalidation of server connection if necessary
     }
     
-    func listDirectory(path: String, parent: NSFileProviderItemIdentifier) -> [FileProviderItem] {
+    func listDirectory(path: String, parent: NSFileProviderItemIdentifier) throws -> [FileProviderItem] {
         var dirEntry: SpinnerDirEntry?
         
-        do {
-            let filePath = NSString.path(withComponents: [path, "*"])
-            try dirEntry = upspin?.client.glob(filePath)
-        } catch let error as NSError {
-            return []
-        }
+        let filePath = NSString.path(withComponents: [path, "*"])
+        try dirEntry = upspin?.client.glob(filePath)
         
         var items: [FileProviderItem] = []
         var entry = dirEntry
