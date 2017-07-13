@@ -22,7 +22,19 @@ class RootContainerEnumerator: FileProviderEnumerator {
         
         // perform a server request to fetch root directory contents
         let userName = upspin.config.userName()!
-        observer.didEnumerate(listDirectory(path: userName, parent: enumeratedItemIdentifier))
+        var listing = listDirectory(path: userName, parent: enumeratedItemIdentifier)
+        
+        // inspect the page to determine whether this is an initial or a follow-up request
+        switch page as NSFileProviderPage {
+        case NSFileProviderInitialPageSortedByName:
+            listing = sortByName(listing: listing)
+        case NSFileProviderInitialPageSortedByDate:
+            listing = sortByDate(listing: listing)
+        default:
+            print("Not implemented: request for page starting at specific page")
+        }
+        
+        observer.didEnumerate(listing)
         observer.finishEnumerating(upToPage: nil)
     }
     

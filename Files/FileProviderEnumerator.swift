@@ -44,12 +44,27 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         var items: [FileProviderItem] = []
         var entry = dirEntry
         while entry != nil {
-            let item = FileProviderItem(name: entry!.name(), isDir: entry!.isDir(), isLink: entry!.isLink(), parent: parent)
+            let lastModified = Date(timeIntervalSince1970: Double(entry!.lastModified()))
+            let item = FileProviderItem(name: entry!.name(), isDir: entry!.isDir(), isLink: entry!.isLink(), lastModified: lastModified, parent: parent)
             items.append(item)
             entry = entry?.next()
         }
         
         return items
+    }
+    
+    func sortByName(listing: [FileProviderItem]) -> [FileProviderItem] {
+        return listing.sorted(by: {
+            (itemA, itemB) in
+            return itemA.filename < itemB.filename
+        })
+    }
+    
+    func sortByDate(listing: [FileProviderItem]) -> [FileProviderItem] {
+        return listing.sorted(by: {
+            (itemA, itemB) in
+            return itemA.lastModified < itemB.lastModified
+        })
     }
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {

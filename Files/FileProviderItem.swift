@@ -23,8 +23,9 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var name: String
     var parent: String
     var type: String
+    var lastModified: Date
     
-    init(name: String, isDir: Bool, isLink: Bool, parent: NSFileProviderItemIdentifier) {
+    init(name: String, isDir: Bool, isLink: Bool, lastModified: Date, parent: NSFileProviderItemIdentifier) {
         print("Creating FileProviderItem \(name)")
         self.name = name
         self.parent = parent.rawValue
@@ -35,6 +36,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
         } else {
             self.type = fileNameToUTI(fileName: self.name)
         }
+        self.lastModified = lastModified
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
@@ -58,6 +60,10 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     
     var typeIdentifier: String {
         return self.type
+    }
+    
+    var contentModificationDate: Date? {
+        return self.lastModified
     }
     
 }

@@ -20,8 +20,20 @@ class DirectoryEnumerator: FileProviderEnumerator {
     override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
         print("DirectoryEnumerator: enumerateItems")
         
+        var listing = listDirectory(path: enumeratedItemIdentifier.rawValue, parent: enumeratedItemIdentifier)
+        
+        // inspect the page to determine whether this is an initial or a follow-up request
+        switch page as NSFileProviderPage {
+        case NSFileProviderInitialPageSortedByName:
+            listing = sortByName(listing: listing)
+        case NSFileProviderInitialPageSortedByDate:
+            listing = sortByDate(listing: listing)
+        default:
+            print("Not implemented: request for page starting at specific page")
+        }
+        
         // perform a server request to fetch root directory contents
-        observer.didEnumerate(listDirectory(path: enumeratedItemIdentifier.rawValue, parent: enumeratedItemIdentifier))
+        observer.didEnumerate(listing)
         observer.finishEnumerating(upToPage: nil)
     }
     
