@@ -11,7 +11,7 @@ import Spinner
 
 let settingsSegue:String = "Settings"
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var usernameLabel: UILabel!
@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // So we can close the keyboard when Done is hit
+        self.filenameTextField.delegate = self
+        self.fileContentsTextView.delegate = self
         
         // Style the TextView to make it more obvious
         fileContentsTextView.layer.cornerRadius = 5
@@ -42,6 +46,18 @@ class HomeViewController: UIViewController {
         } catch {
             alert(title: "Could not create client", message: "Could not reconstruct client from the keychain configuration")
         }
+    }
+    
+    // Close the keyboard when user presses the Done button in a text field
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    // Close the keyboard when user presses the Done button in a text view
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {

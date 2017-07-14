@@ -16,129 +16,163 @@ class FileProviderExtension: NSFileProviderExtension {
     let scheme = "jngl"
     var upspin: Upspin!
     
-    func createUpspinClient() {
-        // Try to get our user's config from the Keychain and create our client
-        let keychain = Keychain()
-        var data: Data!
-        do {
-            data = try keychain.getKeychainItem()
-        } catch {
-            fatalError("No config found in keychain")
-        }
-        do {
-            let propertyListDecoder = PropertyListDecoder()
-            upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
-        } catch {
-            fatalError("Could not decode into an Upspin object")
-        }
-    }
+    // This is our file provider manager, it handles things like placeholders on disk
+    var fileProviderManager: NSFileProviderManager!
+    var fileManager: FileManager!
     
     override init() {
         super.init()
         
-        createUpspinClient()
+        fileProviderManager = NSFileProviderManager.default()
+        fileManager = FileManager()
+            
+        do {
+            upspin = try UpspinClientFromKeychain()
+        } catch let error {
+            // TODO: Handle this better? The keychain may be empty if the user just installed the app.
+            print("FileProviderExtension could not get upspin client: \(error)")
+            fatalError(error.localizedDescription)
+        }
     }
     
-    func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {
-        print("Not implemented: FileProviderExtension: item \(identifier)")
-        
+    override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
         // resolve the given identifier to a record in the model
+        // TODO: implement the actual lookup in a proper database
         
-        // TODO: implement the actual lookup
-        return nil
+        // XXX: Hacky hacky, we'll fake this up for the moment. It slams a bunch of calls to the upspin server.
+        let dirEntry = try upspin.client.glob(identifier.rawValue)
+        let name = dirEntry.name()!
+        let isDir = dirEntry.isDir()
+        let isLink = dirEntry.isLink()
+        let lastModified = dateFrom(unixTime: dirEntry.lastModified())
+        
+        return FileProviderItem(name: name, isDir: isDir, isLink: isLink, lastModified: lastModified, parent: NSFileProviderItemIdentifier.rootContainer)
     }
     
-    func fileURLFrom(path: String) -> URL {
-        var url = URLComponents()
-        url.scheme = scheme
-        url.path = NSString.path(withComponents: [upspin.config.userName(), path])
-        return url.url!
+    func fileName(from identifier: NSFileProviderItemIdentifier) -> String {
+        // This is the last component in the identifier
+        // e.g. kris@jn.gl/somedir/somefile.txt
+        let components = identifier.rawValue.components(separatedBy: "/")
+        return components[components.count - 1]
     }
+    
+    func fileName(from rawValue: String) -> String {
+        // This is the last component in the string
+        // e.g. kris@jn.gl/somedir/somefile.txt
+        let components = rawValue.components(separatedBy: "/")
+        return components[components.count - 1]
+    }
+    
+    /*
+     Our URLs follow this schema:
+     
+     URL: file://baseURL/kris@jn.gl/somedir/somefile.txt/somefile.txt
+          |- base url -| |- item identifier -----------| | filename |
+           fileProviderManager.documentStorageURL
+     */
     
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        /*
+        // We want to return the URL on disk for  this item
+        
         // resolve the given identifier to a file on disk
-        guard let item = try? item(for: identifier) else {
-            print("FileProviderExtension: urlForItem returning nil")
+        guard let thisItem = try? item(for: identifier) else {
             return nil
         }
-         
-        // in this implementation, all paths are structured as <base storage directory>/<item identifier>/<item file name>
-        let manager = NSFileProviderManager.default()
-        let perItemDirectory = manager.documentStorageURL.appendingPathComponent(identifier.rawValue, isDirectory: true)
-         
-        return perItemDirectory.appendingPathComponent(item.filename, isDirectory:false)
-         */
         
-        let url = fileURLFrom(path: identifier.rawValue)
-        return url
+        let perItemDirectory = fileProviderManager.documentStorageURL.appendingPathComponent(identifier.rawValue, isDirectory: true)
+        let filename = fileName(from: thisItem.filename)
+        let itemUrl = perItemDirectory.appendingPathComponent(filename, isDirectory: false)
+        
+        return itemUrl
     }
     
-    func identifierFrom(url: URL) -> NSFileProviderItemIdentifier {
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        return NSFileProviderItemIdentifier(components!.path)
+    func itemIdentifierFrom(url: URL) -> NSFileProviderItemIdentifier {
+        // We want to return an item identifier given an URL
+        return NSFileProviderItemIdentifier(identifierFrom(url: url))
     }
     
-    override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
-        /*
-        // resolve the given URL to a persistent identifier using a database
-        let pathComponents = url.pathComponents
-        
-        // exploit the fact that the path structure has been defined as
-        // <base storage directory>/<item identifier>/<item file name> above
-        assert(pathComponents.count > 2)
-        
-        return NSFileProviderItemIdentifier(pathComponents[pathComponents.count - 2])
-         */
-        
-        let identifier = identifierFrom(url: url)
+    func identifierFrom(url: URL) -> String {
+        // We want to return an item identifier given an URL
+        // Split off the base URL and the filename to get the raw identifier
+        let baseComponentCount = fileProviderManager.documentStorageURL.pathComponents.count
+        let identifierComponents = Array(url.pathComponents[baseComponentCount ... url.pathComponents.count - 2])
+        let identifier = NSString.path(withComponents: identifierComponents)
         return identifier
     }
     
+    override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
+        // resolve the given URL to a persistent identifier using a database (which we don't have yet)
+        return itemIdentifierFrom(url: url)
+    }
+    
+    func placeholderDir(from url: URL) -> URL {
+        // We want to strip off the filename and return the rest
+        let components = url.path.components(separatedBy: "/")
+        let dir = components[0 ... components.count - 2].joined(separator: "/")
+        return URL(fileURLWithPath: dir)
+    }
+    
     override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
-        print("Not implemented: FileProviderExtension: providePlaceholder at \(url.absoluteString)")
-        
-        // Override this method to provide a placeholder for the given URL
-        
         // After writing the placeholder to disk, call the provided completion handler.
         // If any errors occur during this process, pass the error to the completion handler.
         // The system then passes the error back to the original coordinated read or write.
         
-        // If the placeholder was successfully written to disk, this value is nil.
-        // Otherwise, it holds an NSError object describing the error.
-        completionHandler(NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo:[:]))
+        let identifier = itemIdentifierFrom(url: url)
+        
+        var thisItem: NSFileProviderItem?
+        do {
+            thisItem = try item(for: identifier)
+        } catch let error {
+            print("providePlaceholder: \(error)")
+            completionHandler(error)
+            return
+        }
+        
+        do {
+            let dir = placeholderDir(from: url)
+            try fileManager.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+        } catch let error {
+            print("providePlaceholder: \(error)")
+            completionHandler(error)
+            return
+        }
+        
+        do {
+            try NSFileProviderManager.writePlaceholder(at: url, withMetadata: thisItem!)
+        } catch let error {
+            print("providePlaceholder: \(error)")
+            completionHandler(error)
+            return
+        }
+        
+        completionHandler(nil)
     }
     
-    override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
-        print("Not implemented: FileProviderExtension: startProvidingItem")
+    override func startProvidingItem(at url: URL, completionHandler: @escaping (Error?) -> Void) {
+        print("FileProviderExtension: startProvidingItem for \(url)")
         
-        // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion handler
+        // TODO: Something smarter and more efficient than downloading a fresh copy on each request
+        let identifier = identifierFrom(url: url)
+        var data: Data!
+        do {
+            data = try upspin.client.get(identifier)
+        } catch let error {
+            print("Upspin failed to get \(identifier)")
+            completionHandler(error)
+            return
+        }
         
-        /* TODO:
-         This is one of the main entry points of the file provider. We need to check whether the file already exists on disk,
-         whether we know of a more recent version of the file, and implement a policy for these cases. Pseudocode:
-         
-         if !fileOnDisk {
-             downloadRemoteFile()
-             callCompletion(downloadErrorOrNil)
-         } else if fileIsCurrent {
-             callCompletion(nil)
-         } else {
-             if localFileHasChanges {
-                 // in this case, a version of the file is on disk, but we know of a more recent version
-                 // we need to implement a strategy to resolve this conflict
-                 moveLocalFileAside()
-                 scheduleUploadOfLocalFile()
-                 downloadRemoteFile()
-                 callCompletion(downloadErrorOrNil)
-             } else {
-                 downloadRemoteFile()
-                 callCompletion(downloadErrorOrNil)
-             }
-         }
-         */
+        // Save the file to url. providePlaceholder already created the necessary directories.
+        do {
+            // XXX: Do we want to set atomic here?
+            try data.write(to: url)
+        } catch let error {
+            print("Failed to write data to \(url)")
+            completionHandler(error)
+            return
+        }
         
-        completionHandler?(NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo:[:]))
+        completionHandler(nil)
     }
     
     

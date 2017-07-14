@@ -25,6 +25,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var type: String
     var lastModified: Date
     
+    // XXX: Should this just accept a dirEntry?
     init(name: String, isDir: Bool, isLink: Bool, lastModified: Date, parent: NSFileProviderItemIdentifier) {
         self.name = name
         self.parent = parent.rawValue
@@ -50,7 +51,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var capabilities: NSFileProviderItemCapabilities {
         // Limit the capabilities, add new capabilities when we support them
         // https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities
-        return [ .allowsReading ]
+        return [ .allowsAll ]
     }
     
     var filename: String {

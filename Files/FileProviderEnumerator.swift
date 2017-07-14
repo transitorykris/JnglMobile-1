@@ -9,6 +9,10 @@
 import FileProvider
 import Spinner
 
+func dateFrom(unixTime: Int64) -> Date {
+    return Date(timeIntervalSince1970: Double(unixTime))
+}
+
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     
     var enumeratedItemIdentifier: NSFileProviderItemIdentifier
@@ -36,7 +40,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         var items: [FileProviderItem] = []
         var entry = dirEntry
         while entry != nil {
-            let lastModified = Date(timeIntervalSince1970: Double(entry!.lastModified()))
+            let lastModified = dateFrom(unixTime: entry!.lastModified())
             let item = FileProviderItem(name: entry!.name(), isDir: entry!.isDir(), isLink: entry!.isLink(), lastModified: lastModified, parent: parent)
             items.append(item)
             entry = entry?.next()

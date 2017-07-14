@@ -14,7 +14,7 @@ enum saveConfigError: Error {
     case keychainSaveFailed
 }
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var usernameTextField: UITextField!
@@ -29,6 +29,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // So we can control the keyboard
+        self.usernameTextField.delegate = self
+        self.proquintTextField.delegate = self
+        self.keyServerTextField.delegate = self
+        self.storeServerTextField.delegate = self
+        self.dirServerTextField.delegate = self
+        
         // Populate our form if details were given to us
         if let upspin = upspin {
             usernameTextField.text = upspin.config.userName()
@@ -36,6 +43,13 @@ class SettingsViewController: UIViewController {
             storeServerTextField.text = upspin.config.storeNetAddr()
             dirServerTextField.text = upspin.config.dirNetAddr()
         }
+    }
+    
+    // Close the keyboard when user presses the Done button
+    // TODO: Make this a Next button and move to the next field instead?
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func alert(title: String, message: String) {

@@ -18,26 +18,14 @@ class ShareViewController: SLComposeServiceViewController {
         return true
     }
     
-    func createUpspinClient() {
-        // Try to get our user's config from the Keychain and create our client
-        let keychain = Keychain()
-        var data: Data!
-        do {
-            data = try keychain.getKeychainItem()
-        } catch {
-            fatalError("No config found in keychain")
-        }
-        do {
-            let propertyListDecoder = PropertyListDecoder()
-            upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
-        } catch {
-            fatalError("Could not decode into an Upspin object")
-        }
-    }
-
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        createUpspinClient()
+        // Move into a constructor?
+        do {
+            upspin = try UpspinClientFromKeychain()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
         
         // Upload the item to a hard coded name
         let inputItems = extensionContext?.inputItems

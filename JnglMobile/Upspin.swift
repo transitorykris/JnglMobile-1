@@ -23,6 +23,18 @@ enum CodingKeys: String, CodingKey {
     case privateKey
 }
 
+func UpspinClientFromKeychain() throws -> Upspin {
+    // Try to get our user's config from the Keychain and create our client
+    let keychain = Keychain()
+    let data = try keychain.getKeychainItem()
+    
+    // Recreate our upspin client object
+    let propertyListDecoder = PropertyListDecoder()
+    let upspin = try propertyListDecoder.decode(Upspin.self, from: data!)
+    return upspin
+}
+
+
 class Upspin: Codable {
     
     // MARK: Properties
