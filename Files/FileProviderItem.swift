@@ -9,6 +9,7 @@
 import MobileCoreServices
 import FileProvider
 
+// Attempt to determine the uniform type indentifier by the filename extension
 func fileNameToUTI(fileName: String) -> String {
     let fileNameExtension = fileName.components(separatedBy: ".").last!
     let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileNameExtension as CFString, nil)
@@ -20,6 +21,7 @@ func fileNameToUTI(fileName: String) -> String {
 
 class FileProviderItem: NSObject, NSFileProviderItem {
     
+    // MARK: Properties
     var name: String
     var parent: String
     var type: String

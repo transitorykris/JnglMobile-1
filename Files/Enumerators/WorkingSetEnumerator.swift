@@ -10,5 +10,9 @@ import FileProvider
 import Spinner
 
 class WorkingSetEnumerator: FileProviderEnumerator {
+    // Not implemented
+    
+    // The working set should contain things like recently accessed items
+    // Note: the documents in this set will be indexed by Spotlight!
 }
 

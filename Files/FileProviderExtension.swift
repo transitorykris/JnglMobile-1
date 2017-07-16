@@ -51,14 +51,14 @@ class FileProviderExtension: NSFileProviderExtension {
     
     func fileName(from identifier: NSFileProviderItemIdentifier) -> String {
         // This is the last component in the identifier
-        // e.g. kris@jn.gl/somedir/somefile.txt
+        // e.g. user@email.com/somedir/somefile.txt
         let components = identifier.rawValue.components(separatedBy: "/")
         return components[components.count - 1]
     }
     
     func fileName(from rawValue: String) -> String {
         // This is the last component in the string
-        // e.g. kris@jn.gl/somedir/somefile.txt
+        // e.g. user@email.com/somedir/somefile.txt
         let components = rawValue.components(separatedBy: "/")
         return components[components.count - 1]
     }
@@ -66,13 +66,13 @@ class FileProviderExtension: NSFileProviderExtension {
     /*
      Our URLs follow this schema:
      
-     URL: file://baseURL/kris@jn.gl/somedir/somefile.txt/somefile.txt
+     URL: file://baseURL/user@email.com/somedir/somefile.txt/somefile.txt
           |- base url -| |- item identifier -----------| | filename |
            fileProviderManager.documentStorageURL
      */
     
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        // We want to return the URL on disk for  this item
+        // We want to return the URL on disk for this item
         
         // resolve the given identifier to a file on disk
         guard let thisItem = try? item(for: identifier) else {

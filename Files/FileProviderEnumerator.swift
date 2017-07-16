@@ -9,6 +9,7 @@
 import FileProvider
 import Spinner
 
+// Convert to Date from Upspin's int64 timestamp
 func dateFrom(unixTime: Int64) -> Date {
     return Date(timeIntervalSince1970: Double(unixTime))
 }
@@ -29,8 +30,8 @@ func sortByDate(listing: [FileProviderItem]) -> [FileProviderItem] {
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     
+    // MARK: Properties
     var enumeratedItemIdentifier: NSFileProviderItemIdentifier
-    
     var upspin: Upspin!
     
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {

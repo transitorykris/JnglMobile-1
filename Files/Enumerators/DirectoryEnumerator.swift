@@ -11,6 +11,8 @@ import Spinner
 
 class DirectoryEnumerator: FileProviderEnumerator {
     
+    // This is for enumerating the contents of a specific directory
+    
     override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {        
         var listing: [FileProviderItem]!
         do {
@@ -30,8 +32,12 @@ class DirectoryEnumerator: FileProviderEnumerator {
             print("Not implemented: request for page starting at specific page")
         }
         
-        // perform a server request to fetch root directory contents
         observer.didEnumerate(listing)
+        
+        // We're returning everything as a single page here (upToPAge: nil)
+        // TOOD: Since the extension is given a very small amount of memory,
+        // paginating the results may be necessary for directories with lots
+        // of files.
         observer.finishEnumerating(upToPage: nil)
     }
     
