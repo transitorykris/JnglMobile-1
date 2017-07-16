@@ -26,6 +26,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var name: String
     var parent: String
     var type: CFString
+    var size: NSNumber
     var lastModified: Date
     
     init(dirEntry: SpinnerDirEntry, parent: NSFileProviderItemIdentifier) {
@@ -41,6 +42,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
             self.type = fileNameToUTI(fileName: self.name)
         }
         
+        self.size = dirEntry.size() as NSNumber
         self.lastModified = dateFrom(unixTime: dirEntry.lastModified())
     }
     
@@ -71,6 +73,10 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     
     var filename: String {
         return name
+    }
+    
+    var documentSize: NSNumber? {
+        return self.size
     }
     
     var typeIdentifier: String {
