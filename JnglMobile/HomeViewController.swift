@@ -104,7 +104,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         do {
             try contents = upspin.client.get(filenameTextField.text)
-        } catch let error as NSError {
+        } catch {
             alert(title: "Failed to get file", message: "\(error)")
             return
         }
@@ -121,7 +121,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         do {
             try dirEntry = upspin.client.glob(filenameTextField.text)
-        } catch let error as NSError {
+        } catch {
             alert(title: "Cannot list files", message: "\(error)")
             return
         }

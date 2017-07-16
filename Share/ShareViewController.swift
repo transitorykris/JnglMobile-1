@@ -23,7 +23,7 @@ class ShareViewController: SLComposeServiceViewController {
         // Move into a constructor?
         do {
             upspin = try UpspinClientFromKeychain()
-        } catch let error {
+        } catch {
             fatalError(error.localizedDescription)
         }
         

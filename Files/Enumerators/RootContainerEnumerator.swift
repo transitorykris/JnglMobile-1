@@ -22,7 +22,7 @@ class RootContainerEnumerator: FileProviderEnumerator {
         var listing: [FileProviderItem]!
         do {
             try listing = listDirectory(path: userName, parent: enumeratedItemIdentifier)
-        } catch let error {
+        } catch {
             observer.finishEnumeratingWithError(error)
             return
         }

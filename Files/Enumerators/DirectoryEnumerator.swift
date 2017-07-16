@@ -17,7 +17,7 @@ class DirectoryEnumerator: FileProviderEnumerator {
         var listing: [FileProviderItem]!
         do {
             try listing = listDirectory(path: enumeratedItemIdentifier.rawValue, parent: enumeratedItemIdentifier)
-        } catch let error {
+        } catch {
             observer.finishEnumeratingWithError(error)
             return
         }

@@ -28,7 +28,7 @@ class FileProviderExtension: NSFileProviderExtension {
             
         do {
             upspin = try UpspinClientFromKeychain()
-        } catch let error {
+        } catch {
             // TODO: Handle this better? The keychain may be empty if the user just installed the app.
             print("FileProviderExtension could not get upspin client: \(error)")
             fatalError(error.localizedDescription)
@@ -122,7 +122,7 @@ class FileProviderExtension: NSFileProviderExtension {
         var thisItem: NSFileProviderItem?
         do {
             thisItem = try item(for: identifier)
-        } catch let error {
+        } catch {
             print("providePlaceholder: \(error)")
             completionHandler(error)
             return
@@ -131,7 +131,7 @@ class FileProviderExtension: NSFileProviderExtension {
         do {
             let dir = placeholderDir(from: url)
             try fileManager.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
-        } catch let error {
+        } catch {
             print("providePlaceholder: \(error)")
             completionHandler(error)
             return
@@ -139,7 +139,7 @@ class FileProviderExtension: NSFileProviderExtension {
         
         do {
             try NSFileProviderManager.writePlaceholder(at: url, withMetadata: thisItem!)
-        } catch let error {
+        } catch {
             print("providePlaceholder: \(error)")
             completionHandler(error)
             return
@@ -156,7 +156,7 @@ class FileProviderExtension: NSFileProviderExtension {
         var data: Data!
         do {
             data = try upspin.client.get(identifier)
-        } catch let error {
+        } catch {
             print("Upspin failed to get \(identifier)")
             completionHandler(error)
             return
@@ -166,7 +166,7 @@ class FileProviderExtension: NSFileProviderExtension {
         do {
             // XXX: Do we want to set atomic here?
             try data.write(to: url)
-        } catch let error {
+        } catch {
             print("Failed to write data to \(url)")
             completionHandler(error)
             return
