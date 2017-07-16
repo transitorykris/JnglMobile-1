@@ -59,8 +59,8 @@ class FileProviderItem: NSObject, NSFileProviderItem {
         // https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities
         switch self.type {
         case kUTTypeFolder:
-            // TODO: .allowsAddingSubItems, .allowsDeleting (only if dir is empty), .allowTrashing(?), .allowsWriting
-            return [ .allowsContentEnumerating, .allowsReading ]
+            // TODO: .allowsDeleting (only if dir is empty), .allowTrashing(?), .allowsWriting
+            return [ .allowsAddingSubItems, .allowsContentEnumerating, .allowsReading ]
         case kUTTypeSymLink:
             // TODO: figure out what to do here. This could either be a folder or a file.
             return []

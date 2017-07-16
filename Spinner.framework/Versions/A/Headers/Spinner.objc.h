@@ -22,6 +22,7 @@
 - (id)initWithRef:(id)ref;
 - (NSData*)get:(NSString*)path error:(NSError**)error;
 - (SpinnerDirEntry*)glob:(NSString*)pattern error:(NSError**)error;
+- (SpinnerDirEntry*)makeDirectory:(NSString*)name error:(NSError**)error;
 - (NSString*)put:(NSString*)name data:(NSData*)data error:(NSError**)error;
 @end
 

@@ -7,6 +7,7 @@
 //
 
 import FileProvider
+import Spinner
 
 class FileProviderExtension: NSFileProviderExtension {
     
@@ -220,8 +221,20 @@ class FileProviderExtension: NSFileProviderExtension {
      */
     
     override func createDirectory(withName directoryName: String, inParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        print("Not implemented: createDirectory")
-        completionHandler(nil, nil)
+        
+        // Try to create the upspin directory
+        var dirEntry: SpinnerDirEntry?
+        do {
+            let pathName = NSString.path(withComponents: [parentItemIdentifier.rawValue, directoryName])
+            dirEntry = try upspin.client.makeDirectory(pathName)
+        } catch {
+            print("Failed to create directory: \(error)")
+            completionHandler(nil, error)
+        }
+        
+        // Success, return a FileProviderItem to the caller
+        let item = FileProviderItem(dirEntry: dirEntry!, parent: parentItemIdentifier)
+        completionHandler(item, nil)
     }
     
     override func deleteItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (Error?) -> Void) {

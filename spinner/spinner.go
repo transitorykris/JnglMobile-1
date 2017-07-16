@@ -154,6 +154,27 @@ func (c *Client) Put(name string, data []byte) (string, error) {
 	return string(entry.Blocks[0].Location.Reference), nil // TODO: This should include all blocks.
 }
 
+// MakeDirectory creates a new directory returns its dirEntry
+func (c *Client) MakeDirectory(name string) (*DirEntry, error) {
+	de, err := c.c.MakeDirectory(upspin.PathName(name))
+	if err != nil {
+		return nil, err
+	}
+	size, err := de.Size()
+	if err != nil {
+		return nil, err
+	}
+	dirEntry := &DirEntry{
+		Name:         string(de.Name),
+		IsDir:        de.IsDir(),
+		IsLink:       de.IsLink(),
+		Size:         size,
+		LastModified: int64(de.Time),
+		Writer:       string(de.Writer),
+	}
+	return dirEntry, nil
+}
+
 // NewClient returns a new Client for a given user's configuration.
 func NewClient(clientConfig *ClientConfig) (*Client, error) {
 	userName, err := user.Clean(upspin.UserName(clientConfig.UserName))
