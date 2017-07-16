@@ -224,6 +224,56 @@ class FileProviderExtension: NSFileProviderExtension {
      - call the completion block with the modified item in its post-modification state
      */
     
+    override func createDirectory(withName directoryName: String, inParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: createDirectory")
+        completionHandler(nil, nil)
+    }
+    
+    override func deleteItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (Error?) -> Void) {
+        print("Not implemented: deleteItem")
+        completionHandler(nil)
+    }
+    
+    override func importDocument(at fileURL: URL, toParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: importDocument")
+        completionHandler(nil, nil)
+    }
+    
+    override func renameItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toName itemName: String, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: renameItem")
+        completionHandler(nil, nil)
+    }
+    
+    override func reparentItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toParentItemWithIdentifier parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: reparentItem")
+        completionHandler(nil, nil)
+    }
+    
+    override func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: setFavoriteRank")
+        completionHandler(nil, nil)
+    }
+    
+    override func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: setLastUsedDate")
+        completionHandler(nil, nil)
+    }
+    
+    override func setTagData(_ tagData: Data?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: setTagData")
+        completionHandler(nil, nil)
+    }
+    
+    override func trashItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: trashItem")
+        completionHandler(nil, nil)
+    }
+    
+    override func untrashItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier?, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
+        print("Not implemented: untrashItem")
+        completionHandler(nil, nil)
+    }
+    
     // MARK: - Enumeration
     
     override func enumerator(forContainerItemIdentifier containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
