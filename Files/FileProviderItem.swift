@@ -8,6 +8,7 @@
 
 import MobileCoreServices
 import FileProvider
+import Spinner
 
 // Attempt to determine the uniform type indentifier by the filename extension
 func fileNameToUTI(fileName: String) -> String {
@@ -27,22 +28,27 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var type: String
     var lastModified: Date
     
-    // XXX: Should this just accept a dirEntry?
-    init(name: String, isDir: Bool, isLink: Bool, lastModified: Date, parent: NSFileProviderItemIdentifier) {
-        self.name = name
+    init(dirEntry: SpinnerDirEntry, parent: NSFileProviderItemIdentifier) {
+        
+        // Set ourselves up using the Upspin directory entry
+        
+        self.name = dirEntry.name()
+        
         self.parent = parent.rawValue
-        if isDir {
+        
+        if dirEntry.isDir() {
             self.type = kUTTypeFolder as String
-        } else if isLink {
+        } else if dirEntry.isLink() {
             self.type = kUTTypeSymLink as String
         } else {
             self.type = fileNameToUTI(fileName: self.name)
         }
-        self.lastModified = lastModified
+        
+        self.lastModified = dateFrom(unixTime: dirEntry.lastModified())
+        
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
-        // XXX self.name is a bad choice
         return NSFileProviderItemIdentifier(self.name)
     }
     

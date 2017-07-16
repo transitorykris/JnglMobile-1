@@ -55,8 +55,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         var items: [FileProviderItem] = []
         var entry = dirEntry
         while entry != nil {
-            let lastModified = dateFrom(unixTime: entry!.lastModified())
-            let item = FileProviderItem(name: entry!.name(), isDir: entry!.isDir(), isLink: entry!.isLink(), lastModified: lastModified, parent: parent)
+            let item = FileProviderItem(dirEntry: entry!, parent: parent)
             items.append(item)
             entry = entry?.next()
         }

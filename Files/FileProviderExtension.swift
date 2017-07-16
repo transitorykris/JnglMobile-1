@@ -41,12 +41,7 @@ class FileProviderExtension: NSFileProviderExtension {
         
         // XXX: Hacky hacky, we'll fake this up for the moment. It slams a bunch of calls to the upspin server.
         let dirEntry = try upspin.client.glob(identifier.rawValue)
-        let name = dirEntry.name()!
-        let isDir = dirEntry.isDir()
-        let isLink = dirEntry.isLink()
-        let lastModified = dateFrom(unixTime: dirEntry.lastModified())
-        
-        return FileProviderItem(name: name, isDir: isDir, isLink: isLink, lastModified: lastModified, parent: NSFileProviderItemIdentifier.rootContainer)
+        return FileProviderItem(dirEntry: dirEntry, parent: NSFileProviderItemIdentifier.rootContainer)
     }
     
     func fileName(from identifier: NSFileProviderItemIdentifier) -> String {
