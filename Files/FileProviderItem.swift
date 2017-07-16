@@ -11,13 +11,13 @@ import FileProvider
 import Spinner
 
 // Attempt to determine the uniform type indentifier by the filename extension
-func fileNameToUTI(fileName: String) -> String {
+func fileNameToUTI(fileName: String) -> CFString {
     let fileNameExtension = fileName.components(separatedBy: ".").last!
     let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileNameExtension as CFString, nil)
     if uti == nil {
-        return kUTTypeItem as String
+        return kUTTypeItem
     }
-    return uti!.takeUnretainedValue() as String
+    return uti!.takeUnretainedValue()
 }
 
 class FileProviderItem: NSObject, NSFileProviderItem {
@@ -25,27 +25,23 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     // MARK: Properties
     var name: String
     var parent: String
-    var type: String
+    var type: CFString
     var lastModified: Date
     
     init(dirEntry: SpinnerDirEntry, parent: NSFileProviderItemIdentifier) {
-        
         // Set ourselves up using the Upspin directory entry
-        
         self.name = dirEntry.name()
-        
         self.parent = parent.rawValue
         
         if dirEntry.isDir() {
-            self.type = kUTTypeFolder as String
+            self.type = kUTTypeFolder
         } else if dirEntry.isLink() {
-            self.type = kUTTypeSymLink as String
+            self.type = kUTTypeSymLink
         } else {
             self.type = fileNameToUTI(fileName: self.name)
         }
         
         self.lastModified = dateFrom(unixTime: dirEntry.lastModified())
-        
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
@@ -59,7 +55,18 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     var capabilities: NSFileProviderItemCapabilities {
         // Limit the capabilities, add new capabilities when we support them
         // https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities
-        return [ .allowsAll ]
+        switch self.type {
+        case kUTTypeFolder:
+            // TODO: .allowsAddingSubItems, .allowsDeleting (only if dir is empty), .allowTrashing(?), .allowsWriting
+            return [ .allowsContentEnumerating, .allowsReading ]
+        case kUTTypeSymLink:
+            // TODO: figure out what to do here. This could either be a folder or a file.
+            return []
+        default:
+            // Everything else is a plain old file
+            // TODO: .allowsDeleting, .allowsRenaming, .allowsReparenting, .allowsTrashing(?), .allowsWriting
+            return [ .allowsReading ]
+        }
     }
     
     var filename: String {
@@ -67,7 +74,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     }
     
     var typeIdentifier: String {
-        return self.type
+        return self.type as String
     }
     
     var contentModificationDate: Date? {

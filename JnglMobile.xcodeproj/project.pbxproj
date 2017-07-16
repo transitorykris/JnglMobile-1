@@ -141,13 +141,6 @@
 			path = Enumerators;
 			sourceTree = "<group>";
 		};
-		010FA3C91F17E61E00A284E2 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
 		012466561F143CF100315972 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +165,6 @@
 		01C795C01F157DEC00B6D516 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				010FA3C91F17E61E00A284E2 /* Items */,
 				010FA3C81F17E60B00A284E2 /* Enumerators */,
 				01C795C11F157DEC00B6D516 /* FileProviderExtension.swift */,
 				01C795C31F157DEC00B6D516 /* FileProviderItem.swift */,
