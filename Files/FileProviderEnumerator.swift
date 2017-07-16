@@ -13,6 +13,20 @@ func dateFrom(unixTime: Int64) -> Date {
     return Date(timeIntervalSince1970: Double(unixTime))
 }
 
+func sortByName(listing: [FileProviderItem]) -> [FileProviderItem] {
+    return listing.sorted(by: {
+        (itemA, itemB) in
+        return itemA.filename < itemB.filename
+    })
+}
+
+func sortByDate(listing: [FileProviderItem]) -> [FileProviderItem] {
+    return listing.sorted(by: {
+        (itemA, itemB) in
+        return itemA.lastModified < itemB.lastModified
+    })
+}
+
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     
     var enumeratedItemIdentifier: NSFileProviderItemIdentifier
@@ -47,20 +61,6 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         }
         
         return items
-    }
-    
-    func sortByName(listing: [FileProviderItem]) -> [FileProviderItem] {
-        return listing.sorted(by: {
-            (itemA, itemB) in
-            return itemA.filename < itemB.filename
-        })
-    }
-    
-    func sortByDate(listing: [FileProviderItem]) -> [FileProviderItem] {
-        return listing.sorted(by: {
-            (itemA, itemB) in
-            return itemA.lastModified < itemB.lastModified
-        })
     }
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {
