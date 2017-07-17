@@ -22,7 +22,7 @@ to the beta.
 ![Settings screenshot](https://github.com/jnglco/JnglMobile/blob/master/assets/settings.png)
 ![Browsing screenshot](https://github.com/jnglco/JnglMobile/blob/master/assets/browsing.png)
 ![Viewing screenshot](https://github.com/jnglco/JnglMobile/blob/master/assets/augie.png)
-![Sharing screenshot](https://github.com/jnglco/JnglMobile/blob/master/assets/sharing)
+![Sharing screenshot](https://github.com/jnglco/JnglMobile/blob/master/assets/sharing.png)
 
 ## Progress
 
