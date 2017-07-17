@@ -63,7 +63,7 @@ class FileProviderExtension: NSFileProviderExtension {
      Our URLs follow this schema:
      
      URL: file://baseURL/user@email.com/somedir/somefile.txt/somefile.txt
-          |- base url -| |- item identifier -----------| | filename |
+          |- base url -| |- item identifier ---------------| | filename |
            fileProviderManager.documentStorageURL
      */
     
