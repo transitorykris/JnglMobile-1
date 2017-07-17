@@ -33,10 +33,10 @@ to the beta.
 * Open files
 * Create new directories
 * Save files from other apps using the share button (upload goes to root directory, UI partially implemented)
+* Updating files (partially, the updates need to be scheduled to not conflict)
 
 ### What's not implemented (yet!)
 
-* Updating files
 * Deleting files, symlinks, and directories
 * Create new files
 * Editor for Access and Group files

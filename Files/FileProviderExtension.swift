@@ -145,8 +145,6 @@ class FileProviderExtension: NSFileProviderExtension {
     }
     
     override func startProvidingItem(at url: URL, completionHandler: @escaping (Error?) -> Void) {
-        print("FileProviderExtension: startProvidingItem for \(url)")
-        
         // TODO: Something smarter and more efficient than downloading a fresh copy on each request
         let identifier = identifierFrom(url: url)
         var data: Data!
@@ -173,8 +171,6 @@ class FileProviderExtension: NSFileProviderExtension {
     
     
     override func itemChanged(at url: URL) {
-        print("Not implemented: FileProviderExtension: itemChanged")
-        
         // Called at some point after the file has changed; the provider may then trigger an upload
         
         /* TODO:
@@ -183,6 +179,24 @@ class FileProviderExtension: NSFileProviderExtension {
          - create a fresh background NSURLSessionTask and schedule it to upload the current modifications
          - register the NSURLSessionTask with NSFileProviderManager to provide progress updates
          */
+        
+        let name = identifierFrom(url: url)
+        
+        // Load the file's data into a buffer
+        var data: Data?
+        do {
+            try data = Data(contentsOf: url)
+        } catch {
+            print("Failed to load data from \(url)")
+            return
+        }
+        
+        // XXX: See TODO notes above. This needs to be scheduled.
+        do {
+            _ = try upspin.client.put(name, data: data)
+        } catch {
+            print("Failed to put file \(name): \(error)")
+        }
     }
     
     override func stopProvidingItem(at url: URL) {
