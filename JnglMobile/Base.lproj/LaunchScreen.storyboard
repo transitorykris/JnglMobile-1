@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +20,59 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Wwe-OB-ovu">
+                                <rect key="frame" x="67" y="182" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="VDH-yZ-rPW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JnglMobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV7-fO-mSN">
+                                <rect key="frame" x="67" y="430" width="240" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Includes code Copyright 2017 The Upspin Authors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQz-xZ-wp1">
+                                <rect key="frame" x="16" y="638" width="342" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2017 Ahead by a Century, LLC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-Ul-jFG">
+                                <rect key="frame" x="16" y="609" width="342" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9B8-kp-wrq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="YQz-xZ-wp1" secondAttribute="bottom" constant="8" symbolic="YES" id="0Hs-sy-0dl"/>
+                            <constraint firstItem="Nve-Ul-jFG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="5VL-bt-JZu"/>
+                            <constraint firstItem="Wwe-OB-ovu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="51" id="HFC-vn-gut"/>
+                            <constraint firstItem="Nve-Ul-jFG" firstAttribute="trailing" secondItem="YQz-xZ-wp1" secondAttribute="trailing" id="IuF-V2-9Jl"/>
+                            <constraint firstItem="Wwe-OB-ovu" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="162" id="ScO-2S-A6C"/>
+                            <constraint firstItem="DV7-fO-mSN" firstAttribute="leading" secondItem="Wwe-OB-ovu" secondAttribute="leading" id="a7w-Y3-aUM"/>
+                            <constraint firstItem="YQz-xZ-wp1" firstAttribute="top" secondItem="Nve-Ul-jFG" secondAttribute="bottom" constant="8" symbolic="YES" id="cOE-ZK-TXH"/>
+                            <constraint firstItem="Nve-Ul-jFG" firstAttribute="centerX" secondItem="DV7-fO-mSN" secondAttribute="centerX" id="efd-tO-Chn"/>
+                            <constraint firstItem="Nve-Ul-jFG" firstAttribute="leading" secondItem="YQz-xZ-wp1" secondAttribute="leading" id="eh6-qE-10a"/>
+                            <constraint firstItem="DV7-fO-mSN" firstAttribute="top" secondItem="Wwe-OB-ovu" secondAttribute="bottom" constant="8" symbolic="YES" id="ey6-hE-Kwz"/>
+                            <constraint firstItem="DV7-fO-mSN" firstAttribute="trailing" secondItem="Wwe-OB-ovu" secondAttribute="trailing" id="nwh-kv-Lve"/>
+                            <constraint firstAttribute="bottom" secondItem="Nve-Ul-jFG" secondAttribute="bottom" constant="37" id="qg9-ju-IS9"/>
+                            <constraint firstItem="Wwe-OB-ovu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="quP-tM-KhV"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchScreen" width="512" height="512"/>
+    </resources>
 </document>
