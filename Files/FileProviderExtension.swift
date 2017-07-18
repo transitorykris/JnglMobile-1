@@ -124,8 +124,10 @@ class FileProviderExtension: NSFileProviderExtension {
             return
         }
         
+        let placeholderURL = NSFileProviderManager.placeholderURL(for: url)
+        
         do {
-            let dir = placeholderDir(from: url)
+            let dir = placeholderDir(from: placeholderURL)
             try fileManager.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
         } catch {
             print("providePlaceholder: \(error)")
@@ -134,7 +136,7 @@ class FileProviderExtension: NSFileProviderExtension {
         }
         
         do {
-            try NSFileProviderManager.writePlaceholder(at: url, withMetadata: thisItem!)
+            try NSFileProviderManager.writePlaceholder(at: placeholderURL, withMetadata: thisItem!)
         } catch {
             print("providePlaceholder: \(error)")
             completionHandler(error)
