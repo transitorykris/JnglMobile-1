@@ -46,6 +46,7 @@ to the beta.
 
 ### Rough edges
 
+* iOS application extensions have limited memory available (16MB?). The extension terminates immediately if this is surpassed. Get's and Put's on large files will need to be streamed.
 * If the user has not configured their upspin account using the app, the file extension will crash
 * State is not tracked yet, so multiple Upspin globs will hit the server as directories are browsed
 * Files are always downloaded even if the remote has not changed
