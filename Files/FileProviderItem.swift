@@ -44,6 +44,12 @@ class FileProviderItem: NSObject, NSFileProviderItem {
         
         self.size = dirEntry.size() as NSNumber
         self.lastModified = dateFrom(unixTime: dirEntry.lastModified())
+        
+        print("\(self.name) item initialized")
+    }
+    
+    deinit {
+        print("\(name) item is being deallocated")
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {

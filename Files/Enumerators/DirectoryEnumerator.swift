@@ -13,6 +13,10 @@ class DirectoryEnumerator: FileProviderEnumerator {
     
     // This is for enumerating the contents of a specific directory
     
+    deinit {
+        print("DirectoryEnumerator is being deallocated")
+    }
+    
     override func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAtPage page: Data) {        
         var listing: [FileProviderItem]!
         do {

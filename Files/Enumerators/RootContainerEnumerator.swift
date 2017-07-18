@@ -13,6 +13,10 @@ class RootContainerEnumerator: FileProviderEnumerator {
     
     // The RootContainerEnumerator is for enumerating the user's root directory
     
+    deinit {
+        print("RootContainerEnumerator is being deallocated")
+    }
+    
     // TODO: The root should probably match how upspinfs behaves, this is a list of
     // identities in the global namespace that have content accessed by the user.
     

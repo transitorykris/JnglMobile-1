@@ -14,5 +14,9 @@ class WorkingSetEnumerator: FileProviderEnumerator {
     
     // The working set should contain things like recently accessed items
     // Note: the documents in this set will be indexed by Spotlight!
+    
+    deinit {
+        print("WorkingSetEnumerator is being deallocated")
+    }
 }
 

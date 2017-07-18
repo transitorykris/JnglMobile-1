@@ -27,6 +27,7 @@ class FileProviderExtension: NSFileProviderExtension {
     var dispatch: DispatchQueue?
     
     override init() {
+        print("FileProviderExtension is being initialized")
         super.init()
         
         fileProviderManager = NSFileProviderManager.default()
@@ -47,7 +48,12 @@ class FileProviderExtension: NSFileProviderExtension {
         dispatch = DispatchQueue(label: dispatchQueueLabel, autoreleaseFrequency: .workItem)
     }
     
+    deinit {
+        print("FileProviderExtension is being deallocated")
+    }
+    
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
+        print("!@#$!@#$!@$# item()")
         // resolve the given identifier to a record in the model
         // TODO: implement the actual lookup in a proper database
         
@@ -79,6 +85,7 @@ class FileProviderExtension: NSFileProviderExtension {
      */
     
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
+        print("****** URL FOR ITEM")
         // We want to return the URL on disk for this item
         
         // resolve the given identifier to a file on disk

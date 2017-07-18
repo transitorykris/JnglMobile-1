@@ -35,9 +35,14 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     var upspin: Upspin!
     
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, upspin: Upspin) {
+        print("FileProviderEnumerator \(enumeratedItemIdentifier) being initialized")
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
         self.upspin = upspin
         super.init()
+    }
+    
+    deinit {
+        print("FileProviderEnumerator is being deallocated")
     }
 
     func invalidate() {
