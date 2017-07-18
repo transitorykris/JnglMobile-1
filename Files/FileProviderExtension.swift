@@ -15,18 +15,24 @@ class FileProviderExtension: NSFileProviderExtension {
     
     // Using jngl for now, maybe upspin is better?
     let scheme = "jngl"
+    let dispatchQueueLabel = "jngl.upspin.transfers"
     var upspin: Upspin!
     
     // This is our file provider manager, it handles things like placeholders on disk
     var fileProviderManager: NSFileProviderManager!
     var fileManager: FileManager!
     
+    // This dispatch queue is used for scheduling uploads and downloads synchronously
+    // Refactor this into a scheduler class?
+    var dispatch: DispatchQueue?
+    
     override init() {
         super.init()
         
         fileProviderManager = NSFileProviderManager.default()
         fileManager = FileManager()
-            
+        
+        // Set up our upspin client
         do {
             upspin = try UpspinClientFromKeychain()
         } catch {
@@ -34,6 +40,11 @@ class FileProviderExtension: NSFileProviderExtension {
             print("FileProviderExtension could not get upspin client: \(error)")
             fatalError(error.localizedDescription)
         }
+        
+        // Set up a dispatch queue to synchronously schedule upspin transfers
+        // Apple's docs are a little confusing here. I believe this creates a dispatch queue
+        // that is serial and releases memory after it works on a single item in the queue.
+        dispatch = DispatchQueue(label: dispatchQueueLabel, autoreleaseFrequency: .workItem)
     }
     
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
@@ -148,27 +159,31 @@ class FileProviderExtension: NSFileProviderExtension {
     
     override func startProvidingItem(at url: URL, completionHandler: @escaping (Error?) -> Void) {
         // TODO: Something smarter and more efficient than downloading a fresh copy on each request
-        let identifier = identifierFrom(url: url)
-        var data: Data!
-        do {
-            data = try upspin.client.get(identifier)
-        } catch {
-            print("Upspin failed to get \(identifier)")
-            completionHandler(error)
-            return
+        print("Creating download work item for our dispatch queue \(url)")
+        dispatch?.sync {
+            let identifier = identifierFrom(url: url)
+            var data: Data!
+            do {
+                data = try upspin.client.get(identifier)
+            } catch {
+                print("Upspin failed to get \(identifier)")
+                completionHandler(error)
+                return
+            }
+            
+            // Save the file to url. providePlaceholder already created the necessary directories.
+            do {
+                // XXX: Do we want to set atomic here?
+                try data.write(to: url)
+            } catch {
+                print("Failed to write data to \(url)")
+                completionHandler(error)
+                return
+            }
+            
+            completionHandler(nil)
         }
-        
-        // Save the file to url. providePlaceholder already created the necessary directories.
-        do {
-            // XXX: Do we want to set atomic here?
-            try data.write(to: url)
-        } catch {
-            print("Failed to write data to \(url)")
-            completionHandler(error)
-            return
-        }
-        
-        completionHandler(nil)
+        print("Completed download work item \(url)")
     }
     
     
@@ -181,24 +196,29 @@ class FileProviderExtension: NSFileProviderExtension {
          - create a fresh background NSURLSessionTask and schedule it to upload the current modifications
          - register the NSURLSessionTask with NSFileProviderManager to provide progress updates
          */
-        
-        let name = identifierFrom(url: url)
-        
-        // Load the file's data into a buffer
-        var data: Data?
-        do {
-            try data = Data(contentsOf: url)
-        } catch {
-            print("Failed to load data from \(url)")
-            return
+        print("Creating upload work item for our dispatch queue \(url)")
+        dispatch?.sync {
+            let name = identifierFrom(url: url)
+            
+            // Load the file's data into a buffer
+            // XXX: This will generally fail on a physical iOS device due to memory limites
+            // TODO: Write in 1MB blocks
+            var data: Data?
+            do {
+                try data = Data(contentsOf: url)
+            } catch {
+                print("Failed to load data from \(url)")
+                return
+            }
+            
+            // XXX: See TODO notes above. This needs to be scheduled.
+            do {
+                _ = try upspin.client.put(name, data: data)
+            } catch {
+                print("Failed to put file \(name): \(error)")
+            }
         }
-        
-        // XXX: See TODO notes above. This needs to be scheduled.
-        do {
-            _ = try upspin.client.put(name, data: data)
-        } catch {
-            print("Failed to put file \(name): \(error)")
-        }
+        print("Completed upload work item \(url)")
     }
     
     override func stopProvidingItem(at url: URL) {
