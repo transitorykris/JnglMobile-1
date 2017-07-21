@@ -10,6 +10,7 @@
 		012466581F143CF100315972 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012466571F143CF100315972 /* ShareViewController.swift */; };
 		0124665B1F143CF100315972 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012466591F143CF100315972 /* MainInterface.storyboard */; };
 		0124665F1F143CF100315972 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 012466551F143CF100315972 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		014F77B81F22A19900C61DE8 /* DirTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */; };
 		01C795891F1442EF00B6D516 /* Upspin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA761F0F191D00DAD2AB /* Upspin.swift */; };
 		01C7958A1F1442EF00B6D516 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
 		01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
@@ -26,6 +27,8 @@
 		01E010C11F172D5800F05A4A /* RootContainerEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C01F172D5800F05A4A /* RootContainerEnumerator.swift */; };
 		01E010C31F173BB500F05A4A /* DirectoryEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C21F173BB500F05A4A /* DirectoryEnumerator.swift */; };
 		01E010C51F17421B00F05A4A /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E010C41F17421B00F05A4A /* WorkingSetEnumerator.swift */; };
+		01E394A71F219EAC00035287 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E394A61F219EAC00035287 /* FilesTableViewController.swift */; };
+		01E394A91F21A2AC00035287 /* FilesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E394A81F21A2AC00035287 /* FilesTableViewCell.swift */; };
 		01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */; };
 		01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */; };
 		01EDDA391F0DD16800DAD2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EDDA371F0DD16800DAD2AB /* Main.storyboard */; };
@@ -74,6 +77,7 @@
 		012466571F143CF100315972 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		0124665A1F143CF100315972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		0124665C1F143CF100315972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirTableViewCell.swift; sourceTree = "<group>"; };
 		01C7958C1F14456900B6D516 /* JnglMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JnglMobile.entitlements; sourceTree = "<group>"; };
 		01C7958D1F144A2200B6D516 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		01C7958E1F153B5900B6D516 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		01E010C01F172D5800F05A4A /* RootContainerEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerEnumerator.swift; sourceTree = "<group>"; };
 		01E010C21F173BB500F05A4A /* DirectoryEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryEnumerator.swift; sourceTree = "<group>"; };
 		01E010C41F17421B00F05A4A /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
+		01E394A61F219EAC00035287 /* FilesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		01E394A81F21A2AC00035287 /* FilesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTableViewCell.swift; sourceTree = "<group>"; };
 		01EDDA301F0DD16800DAD2AB /* JnglMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JnglMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EDDA331F0DD16800DAD2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EDDA351F0DD16800DAD2AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +218,9 @@
 				01EDDA741F0F0C8500DAD2AB /* HomeViewController.swift */,
 				01EDDA761F0F191D00DAD2AB /* Upspin.swift */,
 				01EDDA7A1F10555D00DAD2AB /* Keychain.swift */,
+				01E394A61F219EAC00035287 /* FilesTableViewController.swift */,
+				01E394A81F21A2AC00035287 /* FilesTableViewCell.swift */,
+				014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */,
 			);
 			path = JnglMobile;
 			sourceTree = "<group>";
@@ -400,10 +409,13 @@
 				01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */,
 				01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */,
 				01EDDA771F0F191D00DAD2AB /* Upspin.swift in Sources */,
+				01E394A71F219EAC00035287 /* FilesTableViewController.swift in Sources */,
 				01C795B81F15548900B6D516 /* WelcomeViewController.swift in Sources */,
 				01EDDA751F0F0C8500DAD2AB /* HomeViewController.swift in Sources */,
+				01E394A91F21A2AC00035287 /* FilesTableViewCell.swift in Sources */,
 				01EDDA7B1F10555D00DAD2AB /* Keychain.swift in Sources */,
 				01C795BA1F156B1A00B6D516 /* page3ViewController.swift in Sources */,
+				014F77B81F22A19900C61DE8 /* DirTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

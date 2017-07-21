@@ -10,6 +10,7 @@ import UIKit
 import Spinner
 
 let settingsSegue:String = "Settings"
+let filesSegue:String = "Files"
 
 class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -45,7 +46,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             performSegue(withIdentifier: settingsSegue, sender: nil)
         } catch {
             alert(title: "Could not create client", message: "Could not reconstruct client from the keychain configuration")
-        }
+        }        
     }
     
     // Close the keyboard when user presses the Done button in a text field
@@ -91,6 +92,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             }
             settingsViewController.upspin = upspin
             settingsViewController.keychain = keychain
+            
+        case filesSegue:
+            guard let filesTableViewController = segue.destination as? FilesTableViewController else {
+                fatalError("Unexpected destination")
+            }
+            filesTableViewController.upspin = upspin
             
         default:
             fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
