@@ -246,6 +246,57 @@
             </objects>
             <point key="canvasLocation" x="415" y="196"/>
         </scene>
+        <!--Make Directory View Controller-->
+        <scene sceneID="GTK-kg-X8T">
+            <objects>
+                <viewController id="0he-Ab-rKO" customClass="MakeDirectoryViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
+                    <view key="view" contentMode="scaleToFill" id="j4m-8G-OTf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Directory name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wv-HO-T3e">
+                                <rect key="frame" x="121" y="193" width="122" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLa-cY-1x3">
+                                <rect key="frame" x="121" y="281" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="0he-Ab-rKO" eventType="touchUpInside" id="w2g-PF-rso"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-w3-mfy">
+                                <rect key="frame" x="197" y="281" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="createButton:" destination="0he-Ab-rKO" eventType="touchUpInside" id="bjT-GF-clv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="12q-As-Oyh">
+                                <rect key="frame" x="121" y="222" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="VrL-4V-IOY"/>
+                    </view>
+                    <connections>
+                        <outlet property="directoryNameField" destination="12q-As-Oyh" id="4f1-k8-vfr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uK6-bG-QlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="717.60000000000002" y="911.69415292353835"/>
+        </scene>
         <!--Files-->
         <scene sceneID="ET8-mv-av3">
             <objects>
@@ -254,9 +305,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="JO7-4J-xjR">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gt-oA-J2Z">
+                                    <rect key="frame" x="321" y="8" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="mkdir"/>
+                                    <connections>
+                                        <segue destination="0he-Ab-rKO" kind="presentation" identifier="makeDirectorySegue" id="nkK-E1-saE"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilesTableViewCell" rowHeight="74" id="6qZ-Vz-pzz" customClass="FilesTableViewCell" customModule="JnglMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="74"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6qZ-Vz-pzz" id="2LR-6h-29a">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
@@ -316,7 +382,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirTableViewCell" id="7AU-uA-KLl" customClass="DirTableViewCell" customModule="JnglMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="102" width="375" height="74"/>
+                                <rect key="frame" x="0.0" y="146" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7AU-uA-KLl" id="b3m-6y-07J">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
@@ -364,10 +430,10 @@
             </objects>
             <point key="canvasLocation" x="-7.2000000000000002" y="911.69415292353835"/>
         </scene>
-        <!--View Controller-->
+        <!--File View Controller-->
         <scene sceneID="yXN-0e-Df6">
             <objects>
-                <viewController id="4Bt-BJ-CyT" sceneMemberID="viewController">
+                <viewController id="4Bt-BJ-CyT" customClass="FileViewController" customModule="JnglMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="4e6-ay-aOS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -380,14 +446,28 @@
                                     <navigationItem title="Title" id="puG-Uo-02r"/>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2wh-dC-4eF">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Open" id="0Ve-YP-d4v">
+                                        <connections>
+                                            <action selector="openButton:" destination="4Bt-BJ-CyT" id="X6l-9u-AXy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Sai-Gt-TRj"/>
                     </view>
+                    <connections>
+                        <outlet property="openButton" destination="0Ve-YP-d4v" id="cIS-iS-Vdt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2r-N7-Rwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="912"/>
+            <point key="canvasLocation" x="718" y="1647"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

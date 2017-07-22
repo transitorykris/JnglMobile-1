@@ -11,6 +11,8 @@
 		0124665B1F143CF100315972 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012466591F143CF100315972 /* MainInterface.storyboard */; };
 		0124665F1F143CF100315972 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 012466551F143CF100315972 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		014F77B81F22A19900C61DE8 /* DirTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */; };
+		014F77BC1F22BA0800C61DE8 /* MakeDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F77BB1F22BA0800C61DE8 /* MakeDirectoryViewController.swift */; };
+		0166E31E1F22D69200EFEC17 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0166E31D1F22D69200EFEC17 /* FileViewController.swift */; };
 		01C795891F1442EF00B6D516 /* Upspin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA761F0F191D00DAD2AB /* Upspin.swift */; };
 		01C7958A1F1442EF00B6D516 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDDA7A1F10555D00DAD2AB /* Keychain.swift */; };
 		01C7958B1F1443E000B6D516 /* Spinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EDDA701F0EC97B00DAD2AB /* Spinner.framework */; };
@@ -78,6 +80,8 @@
 		0124665A1F143CF100315972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		0124665C1F143CF100315972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirTableViewCell.swift; sourceTree = "<group>"; };
+		014F77BB1F22BA0800C61DE8 /* MakeDirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDirectoryViewController.swift; sourceTree = "<group>"; };
+		0166E31D1F22D69200EFEC17 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		01C7958C1F14456900B6D516 /* JnglMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JnglMobile.entitlements; sourceTree = "<group>"; };
 		01C7958D1F144A2200B6D516 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		01C7958E1F153B5900B6D516 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				01E394A61F219EAC00035287 /* FilesTableViewController.swift */,
 				01E394A81F21A2AC00035287 /* FilesTableViewCell.swift */,
 				014F77B71F22A19900C61DE8 /* DirTableViewCell.swift */,
+				014F77BB1F22BA0800C61DE8 /* MakeDirectoryViewController.swift */,
+				0166E31D1F22D69200EFEC17 /* FileViewController.swift */,
 			);
 			path = JnglMobile;
 			sourceTree = "<group>";
@@ -408,9 +414,11 @@
 			files = (
 				01EDDA361F0DD16800DAD2AB /* SettingsViewController.swift in Sources */,
 				01EDDA341F0DD16800DAD2AB /* AppDelegate.swift in Sources */,
+				014F77BC1F22BA0800C61DE8 /* MakeDirectoryViewController.swift in Sources */,
 				01EDDA771F0F191D00DAD2AB /* Upspin.swift in Sources */,
 				01E394A71F219EAC00035287 /* FilesTableViewController.swift in Sources */,
 				01C795B81F15548900B6D516 /* WelcomeViewController.swift in Sources */,
+				0166E31E1F22D69200EFEC17 /* FileViewController.swift in Sources */,
 				01EDDA751F0F0C8500DAD2AB /* HomeViewController.swift in Sources */,
 				01E394A91F21A2AC00035287 /* FilesTableViewCell.swift in Sources */,
 				01EDDA7B1F10555D00DAD2AB /* Keychain.swift in Sources */,

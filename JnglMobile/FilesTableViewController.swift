@@ -42,8 +42,14 @@ func path(_ components: [String]) -> String {
     return NSString.path(withComponents: components) as String
 }
 
+func lastPathComponent(_ path: String) -> String {
+    return URL(fileURLWithPath: path).lastPathComponent
+}
+
+// Some handy constants for our segues
 let fileSegue = "fileSegue"
 let directorySegue = "directorySegue"
+let makeDirectorySegue = "makeDirectorySegue"
 
 class FilesTableViewController: UITableViewController {
     
@@ -66,8 +72,11 @@ class FilesTableViewController: UITableViewController {
         
         // If dir is nil this is the root FilesTableViewController
         if dir == nil {
-            dir = path([upspin.config.userName()])
+            dir = path([upspin.config.userName()])+"/"
         }
+        
+        // Set the title to be our current directory
+        self.title = lastPathComponent(dir!)
         
         loadFiles()
     }
@@ -197,21 +206,46 @@ class FilesTableViewController: UITableViewController {
         switch(segue.identifier ?? "") {
             
         case fileSegue:
-            print("Not implemented: fileSegue")
+            guard let fileViewController = segue.destination as? FileViewController else {
+                fatalError("Failed to create fileViewController")
+            }
+            guard let selectedFileCell = sender as? FilesTableViewCell else {
+                fatalError("Failed to create selectedFileCell")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedFileCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedFile = files[indexPath.row]
+            fileViewController.file = selectedFile
             
         case directorySegue:
             guard let filesTableViewController = segue.destination as? FilesTableViewController else {
                 fatalError("Failed to create dirTableViewCell")
             }
-            let dirCell = sender as? DirTableViewCell
+            guard let selectedDirCell = sender as? DirTableViewCell else {
+                fatalError("Failed to create selectedDirCell")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedDirCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedFile = files[indexPath.row]
+            filesTableViewController.dir = selectedFile.name()
             filesTableViewController.upspin = upspin
-            let dirName = (dirCell?.directoryNameLabel.text)!
-            filesTableViewController.dir = dirName
+            
+        case makeDirectorySegue:
+            guard let makeDirectoryViewController = segue.destination as? MakeDirectoryViewController else {
+                fatalError("Failed to create MakeDirectoryViewController")
+            }
+            makeDirectoryViewController.upspin = upspin
+            makeDirectoryViewController.baseDir = dir
             
         default:
-            fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
+            print("Not implemented: default segue")
+            //fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
             
         }
     }
-
+    
 }
