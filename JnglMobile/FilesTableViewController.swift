@@ -33,7 +33,12 @@ func systemIcon(for file: SpinnerDirEntry) -> UIImage {
     // Try to get an icon for this file
     // TODO: Get proper icons for directories and links
     let url = URL(fileURLWithPath: file.name(), isDirectory: file.isDir())
+    // XXX: This is apparently broken on iOS11?
     let uiDocumentInteractionController = UIDocumentInteractionController(url: url)
+    if uiDocumentInteractionController.icons.count == 0 {
+        // oops, no icon for this filename!
+        return UIImage()
+    }
     let icon = uiDocumentInteractionController.icons[0] // Take the first one, since that's guaranteed
     return icon
 }
@@ -116,7 +121,6 @@ class FilesTableViewController: UITableViewController {
         alertController.addAction(action)
         present(alertController, animated: false, completion: nil)
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // This tableView is called when the FileTableCellView appears on the user's screen
@@ -142,6 +146,7 @@ class FilesTableViewController: UITableViewController {
         cell.lastmodifiedLabel.text = String(describing: dateFrom(unixTime: file.lastModified()))
         cell.sizeLabel.text = sizeToName(bytes: file.size())
         cell.iconImage.image = systemIcon(for: file)
+        cell.writerLabel.text = file.writer()
         
         return cell
     }
@@ -218,6 +223,7 @@ class FilesTableViewController: UITableViewController {
             
             let selectedFile = files[indexPath.row]
             fileViewController.file = selectedFile
+            fileViewController.upspin = upspin
             
         case directorySegue:
             guard let filesTableViewController = segue.destination as? FilesTableViewController else {

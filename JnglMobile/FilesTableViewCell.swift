@@ -15,6 +15,7 @@ class FilesTableViewCell: UITableViewCell {
     @IBOutlet weak var lastmodifiedLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var writerLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
